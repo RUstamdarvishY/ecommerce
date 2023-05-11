@@ -2,27 +2,31 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import "./App.css";
 import NavBar from "./components/Header/NavBar";
 import Panel from "./components/Panel/Panel";
+import CategoryTiles from './components/Panel/CategoryTiles';
 
 function App() {
   return (
     <Grid
       templateAreas={{
-        lg: `"header header"
-                  "panel panel"
-                  "nav main"
-                  "footer footer"`,
+        lg: `"header header header"
+                  "panel panel tiles"
+                  "nav main main"
+                  "footer footer footer"`,
       }}
-      gridTemplateRows={"1fr 3fr 5fr 1fr"}
-      gridTemplateColumns={"25% 75%"}
+      gridTemplateRows={"1fr 4fr 7fr 2fr"}
+      gridTemplateColumns={"20% 40% 40%"}
       gap="3"
       color="blackAlpha.700"
       fontWeight="bold"
     >
-      <GridItem pl="2" area={"header"}>
+      <GridItem area={"header"}>
         <NavBar/>
       </GridItem>
-      <GridItem pl="2" area={"panel"}>
+      <GridItem area={"panel"}>
         <Panel/>
+      </GridItem>
+      <GridItem area={"tiles"}>
+        <CategoryTiles/>
       </GridItem>
       <GridItem pl="2" bg="pink.300" area={"nav"}>
         Nav

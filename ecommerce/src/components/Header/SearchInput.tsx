@@ -6,7 +6,7 @@ const SearchInput = () => {
   return (
   <InputGroup>
     <InputLeftAddon as={AiOutlineSearch} />
-    <Input type='text' placeholder='Найти товар' borderRadius={20}/>
+    <Input type='text' placeholder='Найти товар' borderRadius={20} borderWidth='2px'/>
   </InputGroup>
   )
 }
