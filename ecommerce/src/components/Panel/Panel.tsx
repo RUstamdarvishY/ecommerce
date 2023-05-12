@@ -12,6 +12,7 @@ const Panel = () => {
         <PanelContainer>
           <PanelCard />
         </PanelContainer>
+    
   )
 }
 

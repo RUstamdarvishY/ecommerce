@@ -3,18 +3,21 @@ import "./App.css";
 import NavBar from "./components/Header/NavBar";
 import Panel from "./components/Panel/Panel";
 import CategoryTiles from './components/Panel/CategoryTiles';
+import PopularProductsList from './components/Main/PopularProductsList';
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <Grid
       templateAreas={{
-        lg: `"header header header"
-                  "panel panel tiles"
-                  "nav main main"
-                  "footer footer footer"`,
+        lg: `"header header"
+                  "panel tiles"
+                  "main main"
+                  "footer footer"`,
       }}
-      gridTemplateRows={"1fr 4fr 7fr 2fr"}
-      gridTemplateColumns={"20% 40% 40%"}
+      // gridTemplateRows={"1fr 4fr 7fr 2fr"}
+      gridTemplateRows='auto'
+      gridTemplateColumns={"60% 40%"}
       gap="3"
       color="blackAlpha.700"
       fontWeight="bold"
@@ -28,14 +31,11 @@ function App() {
       <GridItem area={"tiles"}>
         <CategoryTiles/>
       </GridItem>
-      <GridItem pl="2" bg="pink.300" area={"nav"}>
-        Nav
+      <GridItem area={"main"}>
+        <PopularProductsList/>
       </GridItem>
-      <GridItem pl="2" bg="green.300" area={"main"}>
-        Main
-      </GridItem>
-      <GridItem pl="2" bg="blue.300" area={"footer"}>
-        Footer
+      <GridItem area={"footer"}>
+        <Footer/>
       </GridItem>
     </Grid>
   );
