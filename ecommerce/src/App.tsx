@@ -1,9 +1,9 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import "./App.css";
 import NavBar from "./components/Header/NavBar";
-import Panel from "./components/Panel/Panel";
-import CategoryTiles from './components/Panel/CategoryTiles';
-import PopularProductsList from './components/Main/PopularProductsList';
+import Panel from "./components/MainPage/Panel/Panel";
+import CategoryTiles from "./components/MainPage/CategoryTiles";
+import PopularProductsList from "./components/MainPage/PopularProductsList";
 import Footer from "./components/Footer/Footer";
 
 function App() {
@@ -16,26 +16,26 @@ function App() {
                   "footer footer"`,
       }}
       // gridTemplateRows={"1fr 4fr 7fr 2fr"}
-      gridTemplateRows='auto'
+      gridTemplateRows="auto"
       gridTemplateColumns={"60% 40%"}
       gap="3"
       color="blackAlpha.700"
       fontWeight="bold"
     >
       <GridItem area={"header"}>
-        <NavBar/>
+        <NavBar />
       </GridItem>
       <GridItem area={"panel"}>
-        <Panel/>
+        <Panel />
       </GridItem>
       <GridItem area={"tiles"}>
-        <CategoryTiles/>
+        <CategoryTiles />
       </GridItem>
       <GridItem area={"main"}>
-        <PopularProductsList/>
+        <PopularProductsList />
       </GridItem>
       <GridItem area={"footer"}>
-        <Footer/>
+        <Footer />
       </GridItem>
     </Grid>
   );
