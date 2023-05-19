@@ -29,31 +29,61 @@ const PopularProductsList = () => {
 
   return (
     <>
-    <Text marginTop='80px' paddingRight='70vw' paddingBottom='12px' fontSize='2xl'>Популярные товары</Text>
-    <SimpleGrid
-      spacing={4}
-      gridTemplateRows="auto"
-      gridTemplateColumns="repeat(4, 1fr)"
-      gap={5}
-      rowGap={12}
-    >
-      {popularProducts.map((p) => (
-        <LinkBox as="article" borderRadius={5}>
-          <Card overflow='hidden' width='285px' height='335px'>
-            <CardBody key={p.id}>
-              <Image src={p.image} boxSize="170px" width='240px' border='1px'></Image>
-              <LinkOverlay href="#">
-                <Text paddingTop='12px' fontSize={'lg'}>{p.price}</Text>
-              </LinkOverlay>
+      <Text
+        marginTop="80px"
+        paddingRight="70vw"
+        paddingBottom="12px"
+        fontSize="2xl"
+      >
+        Популярные товары
+      </Text>
+      <SimpleGrid
+        spacing={4}
+        gridTemplateRows="auto"
+        gridTemplateColumns="repeat(4, 1fr)"
+        gap={5}
+        rowGap={12}
+      >
+        {popularProducts.map((p) => (
+          <LinkBox as="article" borderRadius={5}>
+            <Card
+              overflow="hidden"
+              width="285px"
+              height="335px"
+              _hover={{
+                transform: "scale(1.03)",
+                transition: "transform .15s ease-in",
+              }}
+            >
+              <CardBody key={p.id}>
+                <Image
+                  src={p.image}
+                  boxSize="170px"
+                  width="240px"
+                  border="1px"
+                ></Image>
+                <LinkOverlay href="#">
+                  <Text paddingTop="12px" fontSize={"lg"}>
+                    {p.price}
+                  </Text>
+                </LinkOverlay>
                 <Text noOfLines={2}>{p.title}</Text>
-            </CardBody>
-            <CardFooter>
-              <Button variant="solid" position='absolute' marginLeft='28px' marginTop='-30px' colorScheme="blue">Добавить в корзину</Button>
-            </CardFooter>
-          </Card>
-        </LinkBox>
-      ))}
-    </SimpleGrid>
+              </CardBody>
+              <CardFooter>
+                <Button
+                  variant="solid"
+                  position="absolute"
+                  marginLeft="28px"
+                  marginTop="-30px"
+                  colorScheme="blue"
+                >
+                  Добавить в корзину
+                </Button>
+              </CardFooter>
+            </Card>
+          </LinkBox>
+        ))}
+      </SimpleGrid>
     </>
   );
 };

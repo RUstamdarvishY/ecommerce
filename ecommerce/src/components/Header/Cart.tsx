@@ -13,6 +13,7 @@ const Cart = () => {
           position="relative"
           bg='transparent'
           boxSize='30px'
+          onClick={() => console.log('hello')}
         />
         <Circle
           size="15px"
