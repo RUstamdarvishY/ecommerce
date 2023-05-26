@@ -1,5 +1,6 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
+import useProductQueryStore from "../../store";
 
 const PlatformSelector = () => {
   const sortOrders = [
@@ -9,15 +10,22 @@ const PlatformSelector = () => {
     { value: "-price", label: "дешевые" },
   ];
 
+  const sortOrder = useProductQueryStore((s) => s.ProductQuery.sortOrder);
+  const setSortOrder = useProductQueryStore((s) => s.setSortOrder);
+
+  const currentSortOrder = sortOrders.find(
+    (order) => order.value === sortOrder
+  );
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Сначала популярные
+        Сначала {currentSortOrder?.label || "популярные"}
       </MenuButton>
       <MenuList>
         {sortOrders.map((order) => (
           <MenuItem
-            onClick={() => console.log("set sort order")}
+            onClick={() => setSortOrder(order.value)}
             key={order.value}
             value={order.value}
           >

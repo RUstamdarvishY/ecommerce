@@ -7,14 +7,17 @@ import {
   Text,
   HStack,
 } from "@chakra-ui/react";
+import Products from "../entities/Products";
+import noImage from "../../assets/placeholder-image.png"
 
 interface Props{
-  title: string;
-  image: string;
+  products: Products
 }
 
 
-const ProductCard = ({title, image}: Props) => {
+const ProductCard = ({products}: Props) => {
+  const {title, image, unit_price, inventory, description} = products
+
   return (
     <Card overflow="hidden" variant="outline" marginX={10} marginBottom={5}>
       <HStack>
@@ -22,26 +25,26 @@ const ProductCard = ({title, image}: Props) => {
           objectFit="cover"
           maxW={{ base: "100%", sm: "200px" }}
           maxH={{ base: "100%", sm: "150px" }}
-          src={image}
+          src={image || noImage}
           alt="Caffe Latte"
         />
         <CardBody>
           <Heading size="md" textAlign="left">
             {title}
           </Heading>
-          <Text py="2" textAlign="left" noOfLines={7} overflow='scroll'>
-            Описание по параметрам 'def item' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas assumenda deleniti dignissimos magnam alias veniam neque dolor, fugit itaque qui.
+          <Text py="2" textAlign="left" noOfLines={7} overflow="scroll">
+            {description}
           </Text>
         </CardBody>
         <CardBody>
           <Heading size="lg" textAlign="center">
-            Цена
+            {unit_price}
           </Heading>
-          <Button variant="solid" colorScheme="red">
+          <Button variant="solid" colorScheme="red" disabled={inventory === 0}>
             Положить в корзину
           </Button>
           <Text py="2" textAlign="center">
-            В наличии
+            {inventory > 3 ? 'в наличии' : inventory > 0 && inventory <= 3 ? 'осталось мало' : 'нет в наличии'}
           </Text>
         </CardBody>
       </HStack>

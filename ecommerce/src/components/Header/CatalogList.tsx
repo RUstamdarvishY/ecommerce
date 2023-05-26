@@ -1,25 +1,31 @@
-import { MenuButton, Button, MenuList, MenuItem, Menu, Text } from "@chakra-ui/react";
+import {
+  MenuButton,
+  Button,
+  MenuList,
+  MenuItem,
+  Menu,
+  Text,
+  Spinner,
+} from "@chakra-ui/react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
+import useCategory from "../../hooks/useCategories";
 
 const CatalogList = () => {
-  const categories = [
-    {id: 1, name: 'часы'}, 
-    {id: 2, name: 'наушники'}, 
-    {id: 3, name: 'зарядки'}, 
-    {id: 4, name: 'колонки'}, 
-    {id: 5, name: 'батарейки'},
-]
+  const { data: categories, error, isLoading } = useCategory();
 
+  if (error) return null;
+
+  if (isLoading) return <Spinner />;
 
   return (
     <Menu>
-      <MenuButton as={Button} leftIcon={<AiOutlineMenuUnfold />} width='200px'>
-        <Text paddingTop='5px'>
-          Каталог
-          </Text>
+      <MenuButton as={Button} leftIcon={<AiOutlineMenuUnfold />} width="200px">
+        <Text paddingTop="5px">Каталог</Text>
       </MenuButton>
       <MenuList>
-        {categories.map(category => <MenuItem key={category.id}>{category.name}</MenuItem>)}
+        {categories.map((category) => (
+          <MenuItem key={category.id}>{category.title}</MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );

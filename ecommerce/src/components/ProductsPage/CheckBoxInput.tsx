@@ -1,6 +1,13 @@
 import { Checkbox, Text, VStack } from "@chakra-ui/react";
 import Options from "../entities/Options";
 
+interface Options {
+  id: number;
+  label: string;
+  filter: string[];
+}
+
+
 interface Props {
   options: Options[];
 }
