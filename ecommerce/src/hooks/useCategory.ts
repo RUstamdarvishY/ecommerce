@@ -7,7 +7,7 @@ import { AxiosRequestConfig } from "axios";
 
 const apiClient = new ApiClient<Categories>("collections/");
 
-const useCategory = (categoryId: AxiosRequestConfig) => {
+const useCategory = (categoryId: number | string) => {
   return useQuery<Categories, Error>({
     queryKey: ["categories", categoryId],
     queryFn: apiClient.get(categoryId),

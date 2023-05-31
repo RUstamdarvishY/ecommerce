@@ -1,25 +1,28 @@
 import axios, { AxiosRequestConfig } from "axios";
+import ProductQuery from "../components/entities/ProductQuery";
 
 const axiosInstance = axios.create({
   baseURL: "http://127.0.0.1:8000/",
 });
 
-class ApiClient<T> {
+class ApiClient<T>{
   endpoint: string;
+  params: ProductQuery | undefined
 
-  constructor(endpoint: string) {
+  constructor(endpoint: string, params?: ProductQuery) {
     this.endpoint = endpoint;
+    this.params = params
   }
 
-  getAll = () => {
+  getAll = (config: AxiosRequestConfig) => {
     return axiosInstance
-      .get<T[]>(this.endpoint)
+      .get<T[]>(this.endpoint, config)
       .then((response) => response.data);
   };
 
-  get = (id: AxiosRequestConfig) => {
+  get = (id: number | string) => {
     return axiosInstance
-      .get<T>(this.endpoint, id)
+      .get<T>(this.endpoint + id)
       .then((response) => response.data);
   };
 

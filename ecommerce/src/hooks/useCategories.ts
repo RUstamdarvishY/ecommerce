@@ -17,7 +17,7 @@ const apiClient = new ApiClient<Categories>("collections/");
 const useCategories = () => {
   return useQuery<Categories[], Error>({
     queryKey: ["categories"],
-    queryFn: apiClient.getAll,
+    queryFn: apiClient.getAll({}),
     cacheTime: ms('2h'),
     staleTime: ms("1d"),
     initialData: initialCategories,

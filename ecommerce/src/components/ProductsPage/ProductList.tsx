@@ -1,23 +1,29 @@
 import ProductCard from "./ProductCard";
-import { List, ListItem, Spinner } from "@chakra-ui/react";
+import { List, ListItem } from "@chakra-ui/react";
 import useProducts from "../../hooks/useProducts";
-import useProductQueryStore from "../../store";
+import ProductContainer from "./ProductContainer";
+import ProductSkeleton from "./ProductSkeleton";
 
 const ProductList = () => {
-  // const productQuery = useProductQueryStore()
-  const {data: products, error, isLoading} = useProducts();
+  const { data: products, error, isLoading } = useProducts();
+  const skeletons = [1, 2, 3];
 
-
-  if (error) return <p>{error.message}</p>
-
-  if (isLoading) return <Spinner/>
+  if (error) return <p>{error.message}</p>;
 
   return (
     <>
+      {isLoading &&
+        skeletons.map((skeleton) => (
+          <ProductContainer key={skeleton}>
+            <ProductSkeleton />
+          </ProductContainer>
+        ))}
       {products?.map((p) => (
         <List spacing={3} key={p.id}>
           <ListItem>
-          <ProductCard products={p} />
+            <ProductContainer>
+              <ProductCard products={p} />
+            </ProductContainer>
           </ListItem>
         </List>
       ))}

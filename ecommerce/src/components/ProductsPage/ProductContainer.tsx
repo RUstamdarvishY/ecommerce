@@ -10,6 +10,7 @@ const ProductContainer = ({ children }: Props) => {
     <Box
       borderRadius="10px"
       overflow="hidden"
+      marginY={10}
     >
       {children}
     </Box>

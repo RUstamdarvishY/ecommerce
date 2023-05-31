@@ -1,4 +1,4 @@
-export default interface productQuery{
+export default interface ProductQuery{
     categoryId?: number;
     priceRange?: number[];
     sortOrder?: string;

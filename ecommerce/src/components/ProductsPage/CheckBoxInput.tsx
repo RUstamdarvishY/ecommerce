@@ -16,10 +16,10 @@ const CheckBoxInput = ({ options }: Props) => {
   return (
     <>
       {options.map((option) => (
-        <VStack marginY={3}>
+        <VStack marginY={3} key={option.id}>
           <Text>{option.label}</Text>
           {option.filter.map((f) => (
-            <Checkbox key={option.id} spacing={2}>
+            <Checkbox spacing={2} key={f}>
               {f}
             </Checkbox>
           ))}
