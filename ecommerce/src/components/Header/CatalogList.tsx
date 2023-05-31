@@ -8,10 +8,10 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
-import useCategory from "../../hooks/useCategories";
+import useCategories from "../../hooks/useCategories";
 
 const CatalogList = () => {
-  const { data: categories, error, isLoading } = useCategory();
+  const { data: categories, error, isLoading } = useCategories();
 
   if (error) return null;
 

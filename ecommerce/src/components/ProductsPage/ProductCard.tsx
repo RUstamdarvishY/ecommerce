@@ -7,7 +7,7 @@ import {
   Text,
   HStack,
 } from "@chakra-ui/react";
-import Products from "../entities/Products";
+import { Products } from "../../hooks/useProducts"
 import noImage from "../../assets/placeholder-image.png"
 
 interface Props{

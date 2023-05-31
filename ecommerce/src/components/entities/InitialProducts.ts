@@ -5,6 +5,7 @@ const initialProducts = [
     description: "omg",
     unit_price: 25,
     inventory: 10,
+    image: '',
     collectionId: 5,
   },
   {
@@ -13,6 +14,7 @@ const initialProducts = [
     description: "-------",
     unit_price: 204,
     inventory: 2,
+    image: '',
     collectionId: 1,
   },
   {
@@ -21,6 +23,7 @@ const initialProducts = [
     description: "om215521",
     unit_price: 15,
     inventory: 0,
+    image: '',
     collectionId: 2,
   },
 ];

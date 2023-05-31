@@ -17,7 +17,7 @@ const ProductList = () => {
       {products?.map((p) => (
         <List spacing={3} key={p.id}>
           <ListItem>
-          <ProductCard products={products} />
+          <ProductCard products={p} />
           </ListItem>
         </List>
       ))}
