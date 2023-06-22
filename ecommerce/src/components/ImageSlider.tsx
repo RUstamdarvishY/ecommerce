@@ -79,7 +79,7 @@ const ImageSlider = ({ slides, speed }: Props) => {
         onClick={goToPrevios}
       ></IconButton>
       <Center>
-        <Text position="absolute" top="105%" textAlign="center">
+        <Text position="absolute" top="105%">
           {slides[currentIndex].title}
         </Text>
       </Center>

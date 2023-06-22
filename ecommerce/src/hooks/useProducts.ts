@@ -11,6 +11,7 @@ export interface Products{
   description: string
   retail_price: number
   wholesale_price: number
+  image: string
   inventory: number
   collection: number 
 }

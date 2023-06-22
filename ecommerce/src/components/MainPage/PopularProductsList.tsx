@@ -4,35 +4,35 @@ import {
   Card,
   CardBody,
   LinkOverlay,
-  Image,
+  Box,
   Text,
   Button,
   CardFooter,
   Spinner,
+  Center
 } from "@chakra-ui/react";
 import noImage from "../../assets/placeholder-image.png";
 import useProducts from "../../hooks/useProducts";
 import useProductQueryStore from "../../store";
 import { useEffect } from "react";
 
-
 const PopularProductsList = () => {
   const setSortOrder = useProductQueryStore((s) => s.setSortOrder);
   const sortOrder = useProductQueryStore((s) => s.ProductQuery.sortOrder);
 
-  useEffect(() => {setSortOrder('date')}, [sortOrder]);
+  useEffect(() => {
+    setSortOrder("date");
+  }, [sortOrder, setSortOrder]);
 
-  const {data: popularProducts, isLoading}= useProducts()
-  
+  const { data: popularProducts, isLoading } = useProducts();
+
   if (isLoading) return <Spinner />;
 
-  
   return (
     <>
       <Text
-        marginTop="80px"
-        paddingRight="70vw"
-        paddingBottom="12px"
+        marginTop="10vh"
+        marginBottom="5vh"
         fontSize="2xl"
       >
         Популярные товары
@@ -47,37 +47,39 @@ const PopularProductsList = () => {
         {popularProducts?.slice(0, 12).map((p) => (
           <LinkBox as="article" borderRadius={5}>
             <Card
+              position="relative"
               overflow="hidden"
-              width="285px"
-              height="335px"
+              width="280px"
+              height="330px"
               _hover={{
                 transform: "scale(1.03)",
                 transition: "transform .15s ease-in",
               }}
             >
               <CardBody key={p.id}>
-                <Image
-                  src={noImage}
-                  boxSize="170px"
-                  width="240px"
+                <Box
+                  position="absolute"
+                  height="55%"
+                  width="85%"
+                  backgroundImage={p.image || noImage}
+                  backgroundPosition="center"
+                  backgroundSize="cover"
                   border="1px"
-                ></Image>
-                <LinkOverlay href="#">
-                  <Text paddingTop="12px" fontSize={"lg"}>
-                    {p.retail_price}р
-                  </Text>
-                  <Text paddingTop="12px" fontSize={"lg"}>
-                    {p.wholesale_price}р
-                  </Text>
+                ></Box>
+                <LinkOverlay href="#"> 
+                  <Text fontSize={"md"} position='absolute' top='7%' left='8%'>{p.retail_price}р</Text>
+                  <Text fontSize={"md"} position='absolute' top='15%' left='8%'>{p.wholesale_price}р</Text>
+                  <Center>
+                  <Text fontSize={"md"} overflow='hidden' position='absolute' top='66%'>{p.title}</Text>
+                  </Center>
                 </LinkOverlay>
-                <Text noOfLines={2}>{p.title}</Text>
               </CardBody>
               <CardFooter>
                 <Button
                   variant="solid"
                   position="absolute"
-                  marginLeft="28px"
-                  marginTop="-30px"
+                  top="80%"
+                  left='16%'
                   colorScheme="blue"
                 >
                   Добавить в корзину
