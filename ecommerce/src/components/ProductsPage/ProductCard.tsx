@@ -16,18 +16,18 @@ interface Props{
 
 
 const ProductCard = ({products}: Props) => {
-  const {title, image, unit_price, inventory, description} = products
+  const {title, retail_price, wholesale_price, inventory, description} = products
 
   return (
     <Card overflow="hidden" variant="outline" marginX={10} marginBottom={5}>
       <HStack>
-        <Image
+        {/* <Image
           objectFit="cover"
           maxW={{ base: "100%", sm: "200px" }}
           maxH={{ base: "100%", sm: "150px" }}
           src={image || noImage}
           alt="Caffe Latte"
-        />
+        /> */}
         <CardBody>
           <Heading size="md" textAlign="left">
             {title}
@@ -38,7 +38,10 @@ const ProductCard = ({products}: Props) => {
         </CardBody>
         <CardBody>
           <Heading size="lg" textAlign="center">
-            {unit_price}
+            {retail_price}
+          </Heading>
+          <Heading size="lg" textAlign="center">
+            {wholesale_price}
           </Heading>
           <Button variant="solid" colorScheme="red" disabled={inventory === 0}>
             Положить в корзину

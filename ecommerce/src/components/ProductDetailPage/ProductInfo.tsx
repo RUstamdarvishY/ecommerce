@@ -5,7 +5,7 @@ import useCategory from '../../hooks/useCategory';
 import useCategories from '../../hooks/useCategories';
 
 interface Props{
-  categoryDescriptionItems: CategoryDescription
+  categoryDescriptionItems: CategoryDescription | undefined;
 }
 
 const ProductInfo = ({categoryDescriptionItems: info}: Props) => {
@@ -30,15 +30,15 @@ const ProductInfo = ({categoryDescriptionItems: info}: Props) => {
     <Stack divider={<StackDivider />} spacing='4'>
       <Box>
         <Heading size='xs' textTransform='uppercase'>
-          {info.header}
+          {info?.header}
         </Heading>
       </Box>
       <Box>
         <Heading size='xs' textTransform='uppercase'>
-          {info.item.title}
+          {info?.item.title}
         </Heading>
         <Text pt='2' fontSize='sm'>
-          {info.item.value}
+          {info?.item.value}
         </Text>
       </Box>
     </Stack>

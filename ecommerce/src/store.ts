@@ -13,10 +13,10 @@ interface productQueryStore {
 const useProductQueryStore = create<productQueryStore>((set) => ({
   ProductQuery: {},
   setSearchText: (searchText) => set(() => ({ ProductQuery: { searchText } })),
-  setCategoryId: (genreId) =>
-    set((store) => ({ ProductQuery: { ...store.ProductQuery, genreId } })),
-  setPriceRange: (platformId) =>
-    set((store) => ({ ProductQuery: { ...store.ProductQuery, platformId } })),
+  setCategoryId: (categoryId) =>
+    set((store) => ({ ProductQuery: { ...store.ProductQuery, categoryId } })),
+  setPriceRange: (priceRange) =>
+    set((store) => ({ ProductQuery: { ...store.ProductQuery, priceRange } })),
   setSortOrder: (sortOrder) =>
     set((store) => ({ ProductQuery: { ...store.ProductQuery, sortOrder } })),
 }));

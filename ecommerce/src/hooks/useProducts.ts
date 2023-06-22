@@ -4,14 +4,15 @@ import ms from "ms";
 import initialProducts from "../components/entities/InitialProducts";
 import useProductQueryStore from "../store";
 
+
 export interface Products{
   id: number
   title: string
   description: string
-  unit_price: number
+  retail_price: number
+  wholesale_price: number
   inventory: number
-  image: string
-  collectionId: number 
+  collection: number 
 }
 
 const apiClient = new ApiClient<Products>("products/");
@@ -21,7 +22,7 @@ const useProducts = () => {
 
   return useQuery<Products[], Error>({
     queryKey: ["products", productQuery],
-    queryFn: apiClient.getAll({
+    queryFn: () => apiClient.getAll({
       params: {
         category: productQuery.categoryId,
         price: productQuery.priceRange,
@@ -31,7 +32,7 @@ const useProducts = () => {
     }),
     cacheTime: ms('2h'),
     staleTime: ms("1d"),
-    initialData: initialProducts,
+    // initialData: initialProducts,
   });
 };
 
