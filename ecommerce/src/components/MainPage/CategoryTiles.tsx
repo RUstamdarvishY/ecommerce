@@ -24,7 +24,7 @@ const CategoryTiles = () => {
       gridTemplateColumns={"50% 50%"}
     >
       {categoryCards.map((c) => (
-        <LinkBox as="article" borderRadius={5} width='220px' marginTop='10px'>
+        <LinkBox as="article" borderRadius={5} width='220px'>
           <Card  >
             <CardBody key={c.id}>
               <Image src={c.image} boxSize="170px"></Image>

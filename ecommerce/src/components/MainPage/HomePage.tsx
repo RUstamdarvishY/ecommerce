@@ -1,6 +1,6 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import CategoryTiles from "./CategoryTiles";
-import Panel from "./PanelCard";
+import PanelCardSlider from "./PanelCardSlider";
 import PopularProductsList from "./PopularProductsList";
 
 function HomePage() {
@@ -17,7 +17,7 @@ function HomePage() {
       fontWeight="bold"
     >
       <GridItem area={"panel"}>
-        <Panel />
+        <PanelCardSlider />
       </GridItem>
       <GridItem area={"tiles"}>
         <CategoryTiles />
