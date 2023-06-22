@@ -10,9 +10,14 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import useProductQueryStore from "../../store";
 
 const SliderInput = () => {
+  
+
   const [sliderValue, setSliderValue] = useState([0, 100]);
+
+  const setPriceRange = useProductQueryStore((s) => s.setPriceRange)
 
   return (
     <>
@@ -27,6 +32,7 @@ const SliderInput = () => {
         aria-label={["min", "max"]}
         defaultValue={[0, 100]}
         onChange={(val) => setSliderValue(val)}
+        onChangeEnd={(val) => setPriceRange(val)}
       >
         <RangeSliderMark
           value={sliderValue[0]}

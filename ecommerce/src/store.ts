@@ -6,7 +6,7 @@ interface productQueryStore {
   ProductQuery: productQuery;
   setSearchText: (searchText: string) => void;
   setCategoryId: (genreId: number) => void;
-  setPriceRange: (platformId: number) => void;
+  setPriceRange: (platformId: number[]) => void;
   setSortOrder: (sortOrder: string) => void;
 }
 

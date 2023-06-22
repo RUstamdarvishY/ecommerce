@@ -30,8 +30,8 @@ const useProducts = () => {
         search: productQuery.searchText,
       },
     }),
-    cacheTime: ms('2h'),
-    staleTime: ms("1d"),
+    // cacheTime: ms('2h'),
+    // staleTime: ms("1d"),
     // initialData: initialProducts,
   });
 };
