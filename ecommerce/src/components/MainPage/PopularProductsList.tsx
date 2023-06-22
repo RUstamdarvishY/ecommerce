@@ -8,25 +8,25 @@ import {
   Text,
   Button,
   CardFooter,
+  Spinner,
 } from "@chakra-ui/react";
 import noImage from "../../assets/placeholder-image.png";
+import useProducts from "../../hooks/useProducts";
+import useProductQueryStore from "../../store";
+import { useEffect } from "react";
+
 
 const PopularProductsList = () => {
-  const popularProducts = [
-    { id: 1, title: "Батарейки", image: noImage, price: 25 },
-    { id: 2, title: "Наушники", image: noImage, price: 17 },
-    { id: 3, title: "Колонки", image: noImage, price: 22 },
-    { id: 4, title: "Часы", image: noImage, price: 9 },
-    { id: 5, title: "Батарейки", image: noImage, price: 25 },
-    { id: 6, title: "Наушники", image: noImage, price: 17 },
-    { id: 7, title: "Колонки", image: noImage, price: 22 },
-    { id: 8, title: "Часы", image: noImage, price: 9 },
-    { id: 9, title: "Батарейки", image: noImage, price: 25 },
-    { id: 10, title: "Наушники", image: noImage, price: 17 },
-    { id: 11, title: "Колонки", image: noImage, price: 22 },
-    { id: 12, title: "Часы", image: noImage, price: 9 },
-  ];
+  const setSortOrder = useProductQueryStore((s) => s.setSortOrder);
+  const sortOrder = useProductQueryStore((s) => s.ProductQuery.sortOrder);
 
+  useEffect(() => {setSortOrder('date')}, [sortOrder]);
+
+  const {data: popularProducts, isLoading}= useProducts()
+  
+  if (isLoading) return <Spinner />;
+
+  
   return (
     <>
       <Text
@@ -44,7 +44,7 @@ const PopularProductsList = () => {
         gap={5}
         rowGap={12}
       >
-        {popularProducts.map((p) => (
+        {popularProducts?.slice(0, 12).map((p) => (
           <LinkBox as="article" borderRadius={5}>
             <Card
               overflow="hidden"
@@ -57,14 +57,17 @@ const PopularProductsList = () => {
             >
               <CardBody key={p.id}>
                 <Image
-                  src={p.image}
+                  src={noImage}
                   boxSize="170px"
                   width="240px"
                   border="1px"
                 ></Image>
                 <LinkOverlay href="#">
                   <Text paddingTop="12px" fontSize={"lg"}>
-                    {p.price}
+                    {p.retail_price}р
+                  </Text>
+                  <Text paddingTop="12px" fontSize={"lg"}>
+                    {p.wholesale_price}р
                   </Text>
                 </LinkOverlay>
                 <Text noOfLines={2}>{p.title}</Text>
