@@ -72,7 +72,7 @@ const ImageSlider = ({ slides, speed }: Props) => {
       <IconButton
         position="absolute"
         top="50%"
-        left="-4%"
+        left="-5%"
         aria-label="next"
         zIndex="0"
         as={BsArrowLeft}

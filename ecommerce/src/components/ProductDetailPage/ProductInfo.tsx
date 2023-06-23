@@ -1,11 +1,10 @@
 import { Card, Box, Text, CardHeader, Heading, CardBody, Stack, StackDivider } from '@chakra-ui/react'
-import CategoryDescription from '../entities/CategoryDescription'
 import useProductQueryStore from '../../store';
 import useCategory from '../../hooks/useCategory';
 import useCategories from '../../hooks/useCategories';
 
 interface Props{
-  categoryDescriptionItems: CategoryDescription | undefined;
+  categoryDescriptionItems: string[] | undefined;
 }
 
 const ProductInfo = ({categoryDescriptionItems: info}: Props) => {

@@ -1,30 +1,30 @@
-import { Checkbox, Text, VStack } from "@chakra-ui/react";
-import Options from "../entities/Options";
+import { Checkbox, Box } from "@chakra-ui/react";
+import useProductQueryStore from "../../store";
 
 interface Options {
   id: number;
-  label: string;
-  filter: string[];
+  title: string;
+  options: string[];
 }
 
+interface ProductFilters {
+  id: number;
+  category: string;
+  filters: Options[];
+}
 
 interface Props {
-  options: Options[];
+  productFilters: ProductFilters[];
 }
 
-const CheckBoxInput = ({ options }: Props) => {
+const CheckBoxInput = ({ productFilters }: Props) => {
+  const categoryId = useProductQueryStore((s) => s.ProductQuery.categoryId)
+
+  const categoryFilter = productFilters.find((p) => p.id === categoryId)?.filters 
+
   return (
     <>
-      {options.map((option) => (
-        <VStack marginY={3} key={option.id}>
-          <Text>{option.label}</Text>
-          {option.filter.map((f) => (
-            <Checkbox spacing={2} key={f}>
-              {f}
-            </Checkbox>
-          ))}
-        </VStack>
-      ))}
+      {categoryFilter?.map((f) => {<Box key={f.id}>{f.options.map(((o) => <Checkbox key={f.id}>{o}</Checkbox>))}</Box>})}
     </>
   );
 };

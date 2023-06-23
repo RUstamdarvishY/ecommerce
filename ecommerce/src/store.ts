@@ -1,9 +1,9 @@
 import { create } from "zustand";
-import productQuery from "./components/entities/ProductQuery";
+import { ProductQuery } from "./services/ApiClient";
 
 
 interface productQueryStore {
-  ProductQuery: productQuery;
+  ProductQuery: ProductQuery;
   setSearchText: (searchText: string) => void;
   setCategoryId: (genreId: number) => void;
   setPriceRange: (platformId: number[]) => void;

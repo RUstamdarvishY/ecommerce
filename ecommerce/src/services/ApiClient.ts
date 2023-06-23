@@ -1,9 +1,15 @@
 import axios, { AxiosRequestConfig } from "axios";
-import ProductQuery from "../components/entities/ProductQuery";
 
 const axiosInstance = axios.create({
   baseURL: "https://online-shop-api-drf-9d5164fdf307.herokuapp.com/",
 });
+
+export interface ProductQuery{
+  categoryId?: number;
+  priceRange?: number[];
+  sortOrder?: string;
+  searchText?: string;
+}
 
 class ApiClient<T>{
   endpoint: string;

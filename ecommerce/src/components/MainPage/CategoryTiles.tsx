@@ -6,16 +6,13 @@ import {
   LinkBox,
   LinkOverlay,
   Text,
+  Center,
 } from "@chakra-ui/react";
 import noImage from "../../assets/placeholder-image.png";
+import useCategories from "../../hooks/useCategories";
 
 const CategoryTiles = () => {
-  const categoryCards = [
-    { id: 1, title: "Батарейки", image: noImage },
-    { id: 2, title: "Наушники", image: noImage },
-    { id: 3, title: "Колонки", image: noImage },
-    { id: 4, title: "Часы", image: noImage },
-  ];
+  const {data: categoryCards} = useCategories()
 
   return (
     <SimpleGrid
@@ -23,13 +20,15 @@ const CategoryTiles = () => {
       gridTemplateRows={"50% 50%"}
       gridTemplateColumns={"50% 50%"}
     >
-      {categoryCards.map((c) => (
-        <LinkBox as="article" borderRadius={5} width='220px'>
-          <Card  >
-            <CardBody key={c.id}>
-              <Image src={c.image} boxSize="170px"></Image>
-              <LinkOverlay href="#">
-                <Text>{c.title}</Text>
+      {categoryCards?.slice(2, 6).map((c) => (
+        <LinkBox as="article" borderRadius={5}>
+          <Card key={c.id} position='relative' width='235px' height='235px'>
+              <Image src={noImage} position='absolute' left='10%' top='5%' width='80%' height='70%'></Image>
+            <CardBody>
+              <LinkOverlay href={c.slug}>
+                <Center>
+                <Text position='absolute' top='82%'>{c.title}</Text>
+                </Center>
               </LinkOverlay>
             </CardBody>
           </Card>

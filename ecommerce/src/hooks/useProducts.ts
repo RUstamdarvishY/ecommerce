@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import ApiClient from "../services/ApiClient";
 import ms from "ms";
-import initialProducts from "../components/entities/InitialProducts";
 import useProductQueryStore from "../store";
 
 
@@ -31,9 +30,8 @@ const useProducts = () => {
         search: productQuery.searchText,
       },
     }),
-    // cacheTime: ms('2h'),
-    // staleTime: ms("1d"),
-    // initialData: initialProducts,
+    cacheTime: ms('2h'),
+    staleTime: ms("1d"),
   });
 };
 

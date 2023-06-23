@@ -25,7 +25,7 @@ const ProductDetail = () => {
         <ProductSummary/>
       </GridItem>
       <GridItem area={"info"}>
-        <ProductInfo/>
+        {/* <ProductInfo/> */}
       </GridItem>
       <GridItem area={"empty"}>
         <Empty/>
