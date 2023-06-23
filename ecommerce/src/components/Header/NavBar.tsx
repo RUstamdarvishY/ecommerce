@@ -1,7 +1,7 @@
 import { Image, HStack } from "@chakra-ui/react"
 import eLogo from '../../assets/elogo.png'
 import SearchInput from "./SearchInput"
-import Cart from "./Cart"
+import CartIcon from "./CartIcon"
 import CatalogList from "./CatalogList"
 
 
@@ -10,8 +10,8 @@ const NavBar = () => {
   <HStack>
     <Image src={eLogo} boxSize='60px' marginRight='30px' borderRadius={10}/>
     <CatalogList/>
-    <SearchInput/>
-    <Cart/>
+    {/* <SearchInput/> */}
+    <CartIcon/>
   </HStack>
   </>)
 }

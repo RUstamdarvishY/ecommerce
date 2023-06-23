@@ -1,20 +1,22 @@
 import { IconButton, Text, Circle, Box } from "@chakra-ui/react";
-import { BsCart3 } from "react-icons/bs";
+import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { Link } from "react-router-dom";
 
-const Cart = () => {
+const CartIcon = () => {
   return (
     <>
       <Box>
+        <Link to="корзина/">
         <IconButton
           aria-label="open cart"
-          as={BsCart3}
+          as={AiOutlineShoppingCart}
           marginRight="3px"
           zIndex="-1"
           position="relative"
           bg='transparent'
           boxSize='30px'
-          onClick={() => console.log('hello')}
         />
+        </Link>
         <Circle
           size="15px"
           paddingTop={1}
@@ -34,4 +36,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartIcon;

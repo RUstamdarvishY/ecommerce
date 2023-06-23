@@ -4,6 +4,8 @@ import HomePage from "./MainPage/HomePage";
 import Products from "./ProductsPage/Products";
 import ProductDetail from "./ProductDetailPage/ProductDetail";
 import ErrorPage from "./ErrorPage";
+import Cart from "./Order/Cart";
+
 
 const router = createBrowserRouter([
   {
@@ -12,6 +14,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: "корзина/", element: <Cart /> },
       {
         path: ":slug/",
         element: <Products />,

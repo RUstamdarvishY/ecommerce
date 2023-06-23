@@ -47,6 +47,7 @@ const PopularProductsList = () => {
         {popularProducts?.slice(0, 12).map((p) => (
           <LinkBox as="article" borderRadius={5}>
             <Card
+              key={p.id}
               position="relative"
               overflow="hidden"
               width="280px"
@@ -56,7 +57,7 @@ const PopularProductsList = () => {
                 transition: "transform .15s ease-in",
               }}
             >
-              <CardBody key={p.id}>
+              <CardBody>
                 <Box
                   position="absolute"
                   height="55%"
