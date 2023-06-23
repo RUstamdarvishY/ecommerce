@@ -1,28 +1,51 @@
-import { InputGroup, InputLeftAddon, Input } from "@chakra-ui/react"
-import { AiOutlineSearch } from "react-icons/ai"
-import { useNavigate } from "react-router-dom"
-import useProductQueryStore from "../../store"
-import { useRef } from "react"
+import { InputGroup, InputLeftAddon, Input, Box } from "@chakra-ui/react";
+import { AiOutlineSearch } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import useProductQueryStore from "../../store";
+import useSearchIndex from "../../hooks/useSearchIndex";
+import InputPopUp from "./InputPopUp";
+import useProducts from "../../hooks/useProducts";
 
+
+const miniSearchOptions = {
+  fields: ["title", "description"],
+  storeFields: ["title", "description", "price"],
+  searchOptions: {
+    boost: { title: 2, description: 1 },
+    prefix: true,
+    fuzzy: 0.25,
+  },
+};
 
 const SearchInput = () => {
-  const ref = useRef<HTMLInputElement>(null)
-    const setSearchText =  useProductQueryStore(s => s.setSearchText)
-    const navigate = useNavigate()
+  const {data: products} = useProducts()
+
+  const setSearchText = useProductQueryStore((s) => s.setSearchText);
+
+  const { results, search } = useSearchIndex(
+    products || [],
+    miniSearchOptions,
+    {}
+  );
 
   return (
-    <form style={{width: '100%'}} onSubmit={(event)=> {
-      event.preventDefault();
-      if (ref.current) {
-        setSearchText(ref.current.value)
-      }
-  }}>
-  <InputGroup>
-    <InputLeftAddon as={AiOutlineSearch} />
-    <Input ref={ref} type='text' placeholder='Найти товар' borderRadius={20} borderWidth='2px'/>
-  </InputGroup>
-  </form>
-  )
-}
+    <>
+      <InputGroup>
+        <InputLeftAddon as={AiOutlineSearch} />
+        <Input
+          type="text"
+          onChange={(e) => {search(e.target.value);
+            setSearchText(e.target.value);}}
+          placeholder="Найти товар"
+          borderRadius={20}
+          borderWidth="2px"
+        />
+      </InputGroup>
+      <Box>
+        {results.map((result) => <InputPopUp key={result} results={result} />)}
+      </Box>
+    </>
+  );
+};
 
-export default SearchInput
+export default SearchInput;

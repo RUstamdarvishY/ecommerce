@@ -1,12 +1,17 @@
+import {Box, Text} from '@chakra-ui/react'
+import { Products } from '../../hooks/useProducts';
 
+interface Props{
+  results: Products,
+}
 
-const InputPopUp = () => {
-
-
-
+const InputPopUp = ({results}: Props) => {
   return (
-    <div></div>
-  )
+      <Box>
+        <Text>{results.title}</Text>
+        <Text>{results.description}</Text>
+      </Box>
+  );
 }
 
 export default InputPopUp
