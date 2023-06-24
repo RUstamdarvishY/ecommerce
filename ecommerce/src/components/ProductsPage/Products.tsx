@@ -1,8 +1,9 @@
-import { Grid, GridItem } from "@chakra-ui/react"
-import ProductsHeader from "./ProductsHeader"
-import ProductList from "./ProductList"
-import FilterBar  from "./FilterBar"
-
+import { Grid, GridItem } from "@chakra-ui/react";
+import ProductsHeader from "./ProductsHeader";
+import ProductList from "./ProductList";
+import SliderInput from "./SliderInput";
+import CheckBoxInput from "./CheckBoxInput";
+import filterOptions from "../entities/ProductFilters";
 
 const Products = () => {
   return (
@@ -21,13 +22,14 @@ const Products = () => {
         <ProductsHeader />
       </GridItem>
       <GridItem area={"filters"}>
-        <FilterBar />
+        <SliderInput />
+        <CheckBoxInput productFilters={filterOptions} />
       </GridItem>
       <GridItem area={"products"}>
         <ProductList />
       </GridItem>
     </Grid>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;

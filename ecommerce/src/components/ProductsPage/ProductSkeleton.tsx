@@ -1,14 +1,10 @@
-import {Card, CardBody, Skeleton, SkeletonText} from "@chakra-ui/react"
+import { Skeleton, SkeletonText } from "@chakra-ui/react"
 
 const ProductSkeleton = () => {
   return (
-    <Card marginX={10}>
-        <Skeleton height='150px'>
-        <CardBody>
+        <Skeleton width='inherit' height='inherit'>
             <SkeletonText/>
-        </CardBody>
         </Skeleton>
-    </Card>
   )
 }
 

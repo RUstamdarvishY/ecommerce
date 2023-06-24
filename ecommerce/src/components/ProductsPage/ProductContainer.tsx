@@ -7,10 +7,12 @@ interface Props {
 
 const ProductContainer = ({ children }: Props) => {
   return (
-    <Box
+    <Box 
+      width='73vw'
+      height='35vh'
       borderRadius="10px"
       overflow="hidden"
-      marginY={10}
+      margin={10}
     >
       {children}
     </Box>

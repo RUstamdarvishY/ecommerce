@@ -19,20 +19,20 @@ const ProductCard = ({products}: Props) => {
   const {title, retail_price, wholesale_price, inventory, description} = products
 
   return (
-    <Card overflow="hidden" variant="outline" marginX={10} marginBottom={5}>
+    <Card overflow="hidden" variant="outline">
       <HStack>
-        {/* <Image
+        <Image
           objectFit="cover"
           maxW={{ base: "100%", sm: "200px" }}
           maxH={{ base: "100%", sm: "150px" }}
-          src={image || noImage}
+          src={noImage}
           alt="Caffe Latte"
-        /> */}
+        />
         <CardBody>
           <Heading size="md" textAlign="left">
             {title}
           </Heading>
-          <Text py="2" textAlign="left" noOfLines={7} overflow="scroll">
+          <Text py="2" textAlign="left" noOfLines={4} overflow="scroll">
             {description}
           </Text>
         </CardBody>
