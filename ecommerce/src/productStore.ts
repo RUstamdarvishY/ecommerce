@@ -21,4 +21,5 @@ const useProductQueryStore = create<productQueryStore>((set) => ({
     set((store) => ({ ProductQuery: { ...store.ProductQuery, sortOrder } })),
 }));
 
-export default useProductQueryStore;
+export default useProductQueryStore 
+

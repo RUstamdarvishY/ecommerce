@@ -1,18 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import ApiClient from "../services/ApiClient";
 import ms from "ms";
-import useProductQueryStore from "../store";
+import useProductQueryStore from "../productStore";
 
-
-export interface Products{
-  id: number
-  title: string
-  description: string
-  retail_price: number
-  wholesale_price: number
-  image: string
-  inventory: number
-  collection: number 
+export interface Products {
+  id: number;
+  title: string;
+  description: string;
+  retail_price: number;
+  wholesale_price: number;
+  image: string;
+  inventory: number;
+  collection: number;
 }
 
 const apiClient = new ApiClient<Products>("products/");
@@ -22,15 +21,16 @@ const useProducts = () => {
 
   return useQuery<Products[], Error>({
     queryKey: ["products", productQuery],
-    queryFn: () => apiClient.getAll({
-      params: {
-        category: productQuery.categoryId,
-        price: productQuery.priceRange,
-        ordering: productQuery.sortOrder,
-        search: productQuery.searchText,
-      },
-    }),
-    cacheTime: ms('2h'),
+    queryFn: () =>
+      apiClient.getAll({
+        params: {
+          category: productQuery.categoryId,
+          price: productQuery.priceRange,
+          ordering: productQuery.sortOrder,
+          search: productQuery.searchText,
+        },
+      }),
+    cacheTime: ms("2h"),
     staleTime: ms("1d"),
   });
 };

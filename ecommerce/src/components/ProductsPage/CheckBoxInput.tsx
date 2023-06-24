@@ -1,5 +1,5 @@
 import { Checkbox, Box } from "@chakra-ui/react";
-import useProductQueryStore from "../../store";
+import useProductQueryStore from "../../productStore";
 
 interface Options {
   id: number;
@@ -18,13 +18,21 @@ interface Props {
 }
 
 const CheckBoxInput = ({ productFilters }: Props) => {
-  const categoryId = useProductQueryStore((s) => s.ProductQuery.categoryId)
+  const categoryId = useProductQueryStore((s) => s.ProductQuery.categoryId);
 
-  const categoryFilter = productFilters.find((p) => p.id === categoryId)?.filters 
+  const categoryFilter = productFilters.find(
+    (p) => p.id === categoryId
+  )?.filters;
 
   return (
     <>
-      {categoryFilter?.map((f) => {<Box key={f.id}>{f.options.map(((o) => <Checkbox key={f.id}>{o}</Checkbox>))}</Box>})}
+      {categoryFilter?.map((f) => {
+        <Box key={f.id}>
+          {f.options.map((o) => (
+            <Checkbox key={f.id}>{o}</Checkbox>
+          ))}
+        </Box>;
+      })}
     </>
   );
 };

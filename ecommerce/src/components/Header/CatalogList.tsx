@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import useCategories from "../../hooks/useCategories";
-import useProductQueryStore from "../../store";
+import useProductQueryStore from "../../productStore";
 import { Link } from "react-router-dom";
 
 const CatalogList = () => {

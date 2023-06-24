@@ -4,6 +4,7 @@ import ProductList from "./ProductList";
 import SliderInput from "./SliderInput";
 import CheckBoxInput from "./CheckBoxInput";
 import filterOptions from "../entities/ProductFilters";
+import SortButton from "./SortButton";
 
 const Products = () => {
   return (
@@ -26,6 +27,7 @@ const Products = () => {
         <CheckBoxInput productFilters={filterOptions} />
       </GridItem>
       <GridItem area={"products"}>
+        <SortButton />
         <ProductList />
       </GridItem>
     </Grid>

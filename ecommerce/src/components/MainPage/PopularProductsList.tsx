@@ -9,16 +9,19 @@ import {
   Button,
   CardFooter,
   Spinner,
-  Center
+  Center,
 } from "@chakra-ui/react";
 import noImage from "../../assets/placeholder-image.png";
 import useProducts from "../../hooks/useProducts";
-import useProductQueryStore from "../../store";
+import useProductQueryStore from "../../productStore";
 import { useEffect } from "react";
+import useOrderStore from "../../orderStore";
 
 const PopularProductsList = () => {
   const setSortOrder = useProductQueryStore((s) => s.setSortOrder);
   const sortOrder = useProductQueryStore((s) => s.ProductQuery.sortOrder);
+
+  const setAddProductToCart = useOrderStore((s) => s.setAddProductToCart)
 
   useEffect(() => {
     setSortOrder("date");
@@ -28,13 +31,10 @@ const PopularProductsList = () => {
 
   if (isLoading) return <Spinner />;
 
+
   return (
     <>
-      <Text
-        marginTop="10vh"
-        marginBottom="5vh"
-        fontSize="2xl"
-      >
+      <Text marginTop="10vh" marginBottom="5vh" fontSize="2xl">
         Популярные товары
       </Text>
       <SimpleGrid
@@ -67,11 +67,22 @@ const PopularProductsList = () => {
                   backgroundSize="cover"
                   border="1px"
                 ></Box>
-                <LinkOverlay href="#"> 
-                  <Text fontSize={"md"} position='absolute' top='7%' left='8%'>{p.retail_price}р</Text>
-                  <Text fontSize={"md"} position='absolute' top='15%' left='8%'>{p.wholesale_price}р</Text>
+                <LinkOverlay href="#">
+                  <Text fontSize={"md"} position="absolute" top="7%" left="8%">
+                    {p.retail_price}р
+                  </Text>
+                  <Text fontSize={"md"} position="absolute" top="15%" left="8%">
+                    {p.wholesale_price}р
+                  </Text>
                   <Center>
-                  <Text fontSize={"md"} overflow='hidden' position='absolute' top='66%'>{p.title}</Text>
+                    <Text
+                      fontSize={"md"}
+                      overflow="hidden"
+                      position="absolute"
+                      top="66%"
+                    >
+                      {p.title}
+                    </Text>
                   </Center>
                 </LinkOverlay>
               </CardBody>
@@ -80,8 +91,9 @@ const PopularProductsList = () => {
                   variant="solid"
                   position="absolute"
                   top="80%"
-                  left='16%'
+                  left="16%"
                   colorScheme="blue"
+                  onClick={() => setAddProductToCart(p.id)}
                 >
                   Добавить в корзину
                 </Button>

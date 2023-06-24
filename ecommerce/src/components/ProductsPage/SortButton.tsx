@@ -1,6 +1,13 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import useProductQueryStore from "../../store";
+import useProductQueryStore from "../../productStore";
 
 const PlatformSelector = () => {
   const sortOrders = [
@@ -18,22 +25,24 @@ const PlatformSelector = () => {
   );
 
   return (
-    <Menu>
-      <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Сначала {currentSortOrder?.label || "популярные"}
-      </MenuButton>
-      <MenuList>
-        {sortOrders.map((order) => (
-          <MenuItem
-            onClick={() => setSortOrder(order.value)}
-            key={order.value}
-            value={order.value}
-          >
-            {order.label}
-          </MenuItem>
-        ))}
-      </MenuList>
-    </Menu>
+    <Box textAlign="left" paddingLeft={10}>
+      <Menu>
+        <MenuButton as={Button} rightIcon={<BsChevronDown />}>
+          Сначала {currentSortOrder?.label || "популярные"}
+        </MenuButton>
+        <MenuList>
+          {sortOrders.map((order) => (
+            <MenuItem
+              onClick={() => setSortOrder(order.value)}
+              key={order.value}
+              value={order.value}
+            >
+              {order.label}
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
+    </Box>
   );
 };
 

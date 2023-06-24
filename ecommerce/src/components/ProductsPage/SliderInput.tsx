@@ -10,14 +10,12 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import useProductQueryStore from "../../store";
+import useProductQueryStore from "../../productStore";
 
 const SliderInput = () => {
-  
-
   const [sliderValue, setSliderValue] = useState([0, 100]);
 
-  const setPriceRange = useProductQueryStore((s) => s.setPriceRange)
+  const setPriceRange = useProductQueryStore((s) => s.setPriceRange);
 
   return (
     <>
