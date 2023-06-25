@@ -7,13 +7,14 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { BsArrowRight, BsArrowLeft } from 'react-icons/bs'
 
 interface Slides {
   id: number;
   src: string;
   title: string;
 }
+
 
 interface Props {
   slides: Slides[];
@@ -25,11 +26,12 @@ const ImageSlider = ({ slides, speed }: Props) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToPrevios = () => {
+  const goToPrevios = useCallback(() => {
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
-  };
+  }, [currentIndex, slides]);
+    
 
   const goToNext = useCallback(() => {
     const isLastSlide = currentIndex === slides.length - 1;
@@ -50,6 +52,7 @@ const ImageSlider = ({ slides, speed }: Props) => {
   }, [goToNext, speed]);
 
   return (
+    <>
     <Box
       width="100%"
       height="90%"
@@ -58,23 +61,24 @@ const ImageSlider = ({ slides, speed }: Props) => {
       backgroundPosition="center"
       position="relative"
       borderRadius={5}
-      zIndex="-1"
+      zIndex="1"
     >
       <IconButton
         position="absolute"
         top="50%"
         right="-5%"
         aria-label="previos"
-        zIndex="0"
+        zIndex="2"
         as={BsArrowRight}
         onClick={goToNext}
-      ></IconButton>
+      >
+      </IconButton>
       <IconButton
         position="absolute"
         top="50%"
         left="-5%"
         aria-label="next"
-        zIndex="0"
+        zIndex="2"
         as={BsArrowLeft}
         onClick={goToPrevios}
       ></IconButton>
@@ -96,11 +100,13 @@ const ImageSlider = ({ slides, speed }: Props) => {
             margin="10px"
             fontSize="24px"
             color="white"
-            // onClick={setCurrentIndex(slide.id)}
+            cursor='pointer'
+            onClick={() => setCurrentIndex(slide.id)}
           ></ListItem>
         ))}
       </UnorderedList>
     </Box>
+    </>
   );
 };
 
