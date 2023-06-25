@@ -20,7 +20,7 @@ const CategoryTiles = () => {
       gridTemplateRows={"50% 50%"}
       gridTemplateColumns={"50% 50%"}
     >
-      {categoryCards?.slice(2, 6).map((c) => (
+      {categoryCards?.slice(0, 4).map((c) => (
         <LinkBox as="article" borderRadius={5}>
           <Card key={c.id} position='relative' width='235px' height='235px'>
               <Image src={noImage} position='absolute' left='10%' top='5%' width='80%' height='70%'></Image>
