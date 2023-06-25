@@ -10,7 +10,8 @@ import {
 import { Products } from "../../hooks/useProducts";
 import noImage from "../../assets/placeholder-image.png";
 import { Link } from "react-router-dom";
-import useOrderStore from "../../orderStore";
+import useCreateCartItem from "../../hooks/useCreateCartItem";
+import { useCallback } from "react";
 
 interface Props {
   products: Products;
@@ -20,8 +21,11 @@ const ProductCard = ({ products }: Props) => {
   const { id, title, retail_price, wholesale_price, inventory, description } =
     products;
 
-  const setAddProductToCart = useOrderStore((s) => s.setAddProductToCart)
+  const {mutate: createCartItem } = useCreateCartItem()
 
+  // const handleOrderClick = useCallback((productId: number) => {
+  //   createCartItem(productId)
+  // }, [createCartItem]);
 
   return (
     <Link to={'/' + id}>
@@ -53,7 +57,7 @@ const ProductCard = ({ products }: Props) => {
               variant="solid"
               colorScheme="red"
               disabled={inventory === 0}
-              onClick={() => setAddProductToCart(id)}
+              // onClick={() => {handleOrderClick(id)}}
             >
               Положить в корзину
             </Button>

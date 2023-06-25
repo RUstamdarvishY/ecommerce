@@ -15,13 +15,12 @@ import noImage from "../../assets/placeholder-image.png";
 import useProducts from "../../hooks/useProducts";
 import useProductQueryStore from "../../productStore";
 import { useEffect } from "react";
-import useOrderStore from "../../orderStore";
+
 
 const PopularProductsList = () => {
   const setSortOrder = useProductQueryStore((s) => s.setSortOrder);
   const sortOrder = useProductQueryStore((s) => s.ProductQuery.sortOrder);
 
-  const setAddProductToCart = useOrderStore((s) => s.setAddProductToCart)
 
   useEffect(() => {
     setSortOrder("date");
@@ -93,7 +92,7 @@ const PopularProductsList = () => {
                   top="80%"
                   left="16%"
                   colorScheme="blue"
-                  onClick={() => setAddProductToCart(p.id)}
+                  onClick={() => console.log(p.id)}
                 >
                   Добавить в корзину
                 </Button>
