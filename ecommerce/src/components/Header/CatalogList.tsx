@@ -25,7 +25,7 @@ const CatalogList = () => {
       </MenuButton>
       <MenuList>
         {categories?.map((category) => (
-          <Link to={category.slug}>
+          <Link to={category.slug + '/'}>
             <MenuItem
               key={category.id}
               onClick={() => setCategoryId(category.id)}

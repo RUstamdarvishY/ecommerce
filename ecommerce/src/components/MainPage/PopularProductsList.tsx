@@ -39,8 +39,8 @@ const PopularProductsList = () => {
       <SimpleGrid
         spacing={4}
         gridTemplateRows="auto"
-        gridTemplateColumns="repeat(4, 1fr)"
-        gap={5}
+        gridTemplateColumns="repeat(3, 1fr)"
+        gap={10}
         rowGap={12}
       >
         {popularProducts?.slice(0, 12).map((p) => (
@@ -49,7 +49,7 @@ const PopularProductsList = () => {
               key={p.id}
               position="relative"
               overflow="hidden"
-              width="280px"
+              width="380px"
               height="330px"
               _hover={{
                 transform: "scale(1.03)",

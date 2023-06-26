@@ -5,8 +5,8 @@ import { ProductQuery } from "./services/ApiClient";
 interface productQueryStore {
   ProductQuery: ProductQuery;
   setSearchText: (searchText: string) => void;
-  setCategoryId: (genreId: number) => void;
-  setPriceRange: (platformId: number[]) => void;
+  setCategoryId: (categoryId: number) => void;
+  setPriceRange: (priceRange: number[]) => void;
   setSortOrder: (sortOrder: string) => void;
 }
 
