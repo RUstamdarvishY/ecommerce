@@ -1,5 +1,5 @@
 import { Card, CardBody } from "@chakra-ui/react";
-import ImageSlider from "../ImageSlider";
+import ImageSlider from "./ImageSlider";
 
 const PanelCardSlider = () => {
   const slides = [
@@ -7,24 +7,24 @@ const PanelCardSlider = () => {
       id: 0,
       src: "https://images.pexels.com/photos/5202162/pexels-photo-5202162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       title: "apple",
-      alt: "apple"
+      alt: "apple",
     },
     {
       id: 1,
       src: "https://images.pexels.com/photos/1398655/pexels-photo-1398655.jpeg?auto=compress&cs=tinysrgb&w=1200",
       title: "watermelon",
-      alt: "watermelon"
+      alt: "watermelon",
     },
     {
       id: 2,
       src: "https://images.pexels.com/photos/708587/pexels-photo-708587.jpeg?auto=compress&cs=tinysrgb&w=1200",
       title: "pizza",
-      alt: "pizza"
+      alt: "pizza",
     },
   ];
 
   return (
-    <Card zIndex="0" width='700px' height='485px' margin='10 auto'>
+    <Card zIndex="0" width="700px" height="485px" margin="10 auto">
       <CardBody>
         <ImageSlider slides={slides} speed={4000} />
       </CardBody>
