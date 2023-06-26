@@ -5,6 +5,7 @@ const axiosInstance = axios.create({
 });
 
 export interface ProductQuery{
+  productId?: number;
   categoryId?: number;
   priceRange?: number[];
   sortOrder?: string;

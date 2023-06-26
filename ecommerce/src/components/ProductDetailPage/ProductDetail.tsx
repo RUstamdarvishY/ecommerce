@@ -1,16 +1,15 @@
 import { Grid, GridItem } from "@chakra-ui/react"
-import ProductImagePanel from "./ProductImagePanel"
-import ProductSummary from "./ProductSummary"
+import ProductImageRoll from "./ProductImageRoll"
 import ProductInfo from "./ProductInfo"
-import Empty from "./Empty"
+import ProductHeader from "./ProductHeader"
 
 
 const ProductDetail = () => {
   return (
     <Grid
       templateAreas={{
-        lg: `"image summary"
-              "info empty"`,
+        lg: ` "image buy"
+              "info info"`,
       }}
       gridTemplateRows="auto"
       gridTemplateColumns={"70% 30%"}
@@ -19,16 +18,14 @@ const ProductDetail = () => {
       fontWeight="bold"
     >
       <GridItem area={"image"}>
-        <ProductImagePanel/>
+        <ProductHeader/>
+        <ProductImageRoll/>
       </GridItem>
-      <GridItem area={"summary"}>
-        <ProductSummary/>
+      <GridItem area={"buy"}>
+        <div></div>
       </GridItem>
       <GridItem area={"info"}>
         {/* <ProductInfo/> */}
-      </GridItem>
-      <GridItem area={"empty"}>
-        <Empty/>
       </GridItem>
     </Grid>
   )

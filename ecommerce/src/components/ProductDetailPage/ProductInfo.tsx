@@ -21,12 +21,9 @@ const ProductInfo = ({ categoryDescriptionItems: info }: Props) => {
 
   const { data: categories } = useCategories();
 
-  const currentCategory = categories?.find(
-    (category) => category.id === categoryId
-  );
+  const currentCategory = categories?.find((c) => c.id === categoryId);
 
-  const categoryInterface = useCategory(currentCategory);
-
+  
   return (
     <Card>
       <CardHeader>

@@ -12,6 +12,7 @@ import noImage from "../../assets/placeholder-image.png";
 import { Link } from "react-router-dom";
 import useCreateCartItem from "../../hooks/useCreateCartItem";
 import { useCallback } from "react";
+import useProductQueryStore from "../../productStore";
 
 
 interface Props {
@@ -24,6 +25,8 @@ const ProductCard = ({ products }: Props) => {
 
   const {mutate: createCartItem } = useCreateCartItem()
 
+  const setProductId = useProductQueryStore((s) => s.setProductId)
+
 
   // const handleOrderClick = useCallback((productId: number) => {
   //   createCartItem(productId)
@@ -31,7 +34,7 @@ const ProductCard = ({ products }: Props) => {
 
   return (
     <Link to={'' + id}>
-      <Card overflow="hidden" variant="outline">
+      <Card overflow="hidden" variant="outline" onClick={() => setProductId(id)}>
         <HStack>
           <Image
             objectFit="cover"

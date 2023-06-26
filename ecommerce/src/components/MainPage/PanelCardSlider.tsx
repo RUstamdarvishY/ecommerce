@@ -7,16 +7,19 @@ const PanelCardSlider = () => {
       id: 0,
       src: "https://images.pexels.com/photos/5202162/pexels-photo-5202162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       title: "apple",
+      alt: "apple"
     },
     {
       id: 1,
       src: "https://images.pexels.com/photos/1398655/pexels-photo-1398655.jpeg?auto=compress&cs=tinysrgb&w=1200",
       title: "watermelon",
+      alt: "watermelon"
     },
     {
       id: 2,
       src: "https://images.pexels.com/photos/708587/pexels-photo-708587.jpeg?auto=compress&cs=tinysrgb&w=1200",
       title: "pizza",
+      alt: "pizza"
     },
   ];
 
