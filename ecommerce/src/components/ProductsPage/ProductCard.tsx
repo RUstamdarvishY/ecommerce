@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import useCreateCartItem from "../../hooks/useCreateCartItem";
 import { useCallback } from "react";
 
+
 interface Props {
   products: Products;
 }
@@ -23,12 +24,13 @@ const ProductCard = ({ products }: Props) => {
 
   const {mutate: createCartItem } = useCreateCartItem()
 
+
   // const handleOrderClick = useCallback((productId: number) => {
   //   createCartItem(productId)
   // }, [createCartItem]);
 
   return (
-    <Link to={'/' + id}>
+    <Link to={'' + id}>
       <Card overflow="hidden" variant="outline">
         <HStack>
           <Image
