@@ -7,7 +7,7 @@ import { Products } from "./useProducts";
 
 const apiClient = new ApiClient<Products>("products/");
 
-const useProducts = (productId: number) => {
+const useProduct = (productId: number) => {
   const productQuery = useProductQueryStore((s) => s.ProductQuery);
 
   return useQuery<Products, Error>({
@@ -18,4 +18,4 @@ const useProducts = (productId: number) => {
   });
 };
 
-export default useProducts;
+export default useProduct;

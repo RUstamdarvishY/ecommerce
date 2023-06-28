@@ -15,10 +15,12 @@ import { Link } from "react-router-dom";
 import useCategory from "../../hooks/useCategory";
 
 const SimilarProducts = () => {
-  const { data: products } = useProducts();
+  const { data: products, isLoading, error } = useProducts();
 
   const categoryId = useProductQueryStore((s) => s.ProductQuery.categoryId);
   const productId = useProductQueryStore((s) => s.ProductQuery.productId);
+
+  const setProductId = useProductQueryStore((s) => s.setProductId);
 
   const { data: category } = useCategory(categoryId!);
 
@@ -34,8 +36,8 @@ const SimilarProducts = () => {
       <UnorderedList display="flex" marginTop="2%" listStyleType="none">
         {similarProducts?.map((p) => (
           <Link to={"/" + category?.slug + "/" + p.id}>
-            <ListItem key={p.id}>
-              <Card marginX={4} height='40vh' width='16vw'>
+            <ListItem key={p.id} onClick={() => setProductId(p.id)}>
+              <Card marginX={4} height="40vh" width="16vw">
                 <CardHeader>{p.title}</CardHeader>
                 <CardBody>{/* <Image src={image} /> */}</CardBody>
                 <CardFooter>

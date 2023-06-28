@@ -2,21 +2,21 @@ import { Box, Image, ListItem, UnorderedList } from "@chakra-ui/react";
 import useProductQueryStore from "../../productStore";
 import { useState } from "react";
 import noImage from "../../assets/placeholder-image.png";
-import productImages from "../entities/ProductImages";
+import useImage from "../../hooks/useImage";
 
 const ProductImageRoll = () => {
   const productId = useProductQueryStore((s) => s.ProductQuery.productId);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const images = productImages.filter(image => image.id === productId)
+  const image = useImage(productId!)
 
   return (
     <>
       <Box
         width="100%"
         height="90%"
-        backgroundImage={images.src[currentIndex] || noImage}
+        backgroundImage={image?.src[currentIndex] || noImage}
         backgroundSize="cover"
         backgroundPosition="center"
         position="relative"
@@ -28,8 +28,9 @@ const ProductImageRoll = () => {
           position="absolute"
           top="90%"
           left="46%"
+          display='flex'
         >
-          {images.map((image, index) => (
+          {image?.src.map((s, index) => (
             <ListItem
               key={index}
               margin="10px"
@@ -37,7 +38,7 @@ const ProductImageRoll = () => {
               cursor="pointer"
               onClick={() => setCurrentIndex(index)}
             >
-              <Image src={images.src[index] || noImage} />
+              <Image src={s[index] || noImage} />
             </ListItem>
           ))}
         </UnorderedList>
