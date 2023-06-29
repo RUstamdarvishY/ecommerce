@@ -30,7 +30,7 @@ const SimilarProducts = () => {
 
   return (
     <>
-      <Heading marginTop="50%" marginLeft="3%" textAlign="left">
+      <Heading marginTop="8%" marginLeft="3%" textAlign="left">
         Похожие товары
       </Heading>
       <UnorderedList display="flex" marginTop="2%" listStyleType="none">

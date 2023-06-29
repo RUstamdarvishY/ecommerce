@@ -1,7 +1,7 @@
 import { Grid, GridItem } from "@chakra-ui/react"
 import ProductInfo from "./ProductInfo"
 import SimilarProducts from "./SimilarProducts"
-import BuyPanel from "./BuyPanel"
+import AddToCartPanel from "./AddToCartPanel"
 
 
 const ProductDetail = () => {
@@ -12,7 +12,7 @@ const ProductDetail = () => {
               "similar similar"`,
       }}
       gridTemplateRows={'auto'}
-      gridTemplateColumns={"70% 30%"}
+      gridTemplateColumns={"55% 45%"}
       gap="3"
       color="blackAlpha.700"
       fontWeight="bold"
@@ -21,7 +21,7 @@ const ProductDetail = () => {
         <ProductInfo/>
       </GridItem>
       <GridItem area={"buy"}>
-        <BuyPanel/>
+        <AddToCartPanel/>
       </GridItem>
       <GridItem area={"similar"}>
         <SimilarProducts/>

@@ -1,60 +1,76 @@
 import {
   Card,
-  Box,
   Text,
   CardHeader,
   Heading,
   CardBody,
   CardFooter,
   HStack,
-  Button,
-  Divider,
+  Image,
+  ListItem,
+  UnorderedList,
 } from "@chakra-ui/react";
 import useProductQueryStore from "../../productStore";
 import useProduct from "../../hooks/useProduct";
-import ProductImageRoll from "./ProductImageRoll";
 import { useState } from "react";
+import useImage from "../../hooks/useImage";
+import noImage from "../../assets/placeholder-image.png";
 
 const ProductInfo = () => {
   const productId = useProductQueryStore((s) => s.ProductQuery.productId);
 
   const { data: product } = useProduct(productId!);
+  const image = useImage(productId!);
 
-  const [productCount, setProductCount] = useState(1);
+  
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <Card width="50%" style={{ border: "none", boxShadow: "none" }}>
+    <Card width="90%" style={{ border: "none", boxShadow: "none" }}>
       <CardHeader>
-        <Heading>{product?.title}</Heading>
+        <Heading textAlign='center'>{product?.title}</Heading>
       </CardHeader>
-      <CardBody>
-        <HStack>
-          <ProductImageRoll/>
-          <Button
-            disabled={productCount === 1}
-            onClick={() => setProductCount(productCount - 1)}
-          >
-            -
-          </Button>
-          <Text>{productCount}</Text>
-          <Button
-            disabled={
-              (product && productCount > product.inventory) ||
-              productCount > 100
-            }
-            onClick={() => setProductCount(productCount + 1)}
-          >
-            +
-          </Button>
+      <CardBody position='relative'>
+            <HStack>
+            <UnorderedList
+            >
+              {image?.src.map((s, index) => (
+                <ListItem
+                  key={index}
+                  marginY="9%"
+                  color="white"
+                  width='30%'
+                  cursor="pointer"
+                  borderRadius={2}
+                  backgroundColor={'blue'}
+                  _hover={{
+                    transform: "scale(1.06)",
+                    transition: "transform .15s ease-in",
+                  }}
+                  onClick={() => setCurrentIndex(index)}
+                >
+                  <Image src={s || noImage}/>
+                </ListItem>
+              ))}
+            </UnorderedList>
+            <Image
+              position='absolute'
+              left='30%'
+              src={image?.src[currentIndex] || noImage}
+              backgroundSize="cover"
+              backgroundPosition="center"
+              
+            />
+            </HStack>
           
-          <Text>{Math.round(product?.wholesale_price && product.wholesale_price * productCount || 0)}</Text>
-        </HStack>
+      </CardBody>
+      <CardBody>
+        <Heading size="md" textAlign="left" marginTop={10}>
+          Описание:
+        </Heading>
       </CardBody>
       <CardFooter>
-        <Heading size="md" textAlign="left">
-          Описание
-        </Heading>
-        <Text fontSize="md" textAlign="left">
+        <Text fontSize="md" textAlign="left" marginTop={-6}>
           {product?.description}
         </Text>
       </CardFooter>
