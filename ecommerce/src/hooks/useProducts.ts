@@ -9,7 +9,6 @@ export interface Products {
   description: string;
   retail_price: number;
   wholesale_price: number;
-  image: string[];
   date_added: Date;
   inventory: number;
   collection: number;

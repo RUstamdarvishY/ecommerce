@@ -5,8 +5,13 @@ import SliderInput from "./SliderInput";
 import CheckBoxInput from "./CheckBoxInput";
 import filterOptions from "../entities/ProductFilters";
 import SortButton from "./SortButton";
+import { useEffect } from "react";
 
 const Products = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <Grid
       templateAreas={{

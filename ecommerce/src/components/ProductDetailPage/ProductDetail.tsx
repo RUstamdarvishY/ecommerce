@@ -2,9 +2,14 @@ import { Grid, GridItem } from "@chakra-ui/react"
 import ProductInfo from "./ProductInfo"
 import SimilarProducts from "./SimilarProducts"
 import AddToCartPanel from "./AddToCartPanel"
+import { useEffect } from "react"
 
 
 const ProductDetail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <Grid
       templateAreas={{

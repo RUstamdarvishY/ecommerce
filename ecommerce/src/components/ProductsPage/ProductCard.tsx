@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import useCreateCartItem from "../../hooks/useCreateCartItem";
 import { useCallback } from "react";
 import useProductQueryStore from "../../productStore";
+import useImage from "../../hooks/useImage";
 
 
 interface Props {
@@ -32,6 +33,8 @@ const ProductCard = ({ products }: Props) => {
   //   createCartItem(productId)
   // }, [createCartItem]);
 
+  const image = useImage(id)
+
   return (
     <Link to={'' + id}>
       <Card overflow="hidden" variant="outline" onClick={() => setProductId(id)}>
@@ -40,8 +43,8 @@ const ProductCard = ({ products }: Props) => {
             objectFit="cover"
             maxW={{ base: "100%", sm: "200px" }}
             maxH={{ base: "100%", sm: "150px" }}
-            src={noImage}
-            alt="some image"
+            src={image?.src[0] || noImage}
+            alt={image?.title}
           />
           <CardBody>
             <Heading size="md" textAlign="left">

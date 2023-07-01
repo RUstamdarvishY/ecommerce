@@ -1,9 +1,12 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem, SimpleGrid, Text } from "@chakra-ui/react";
 import CategoryTiles from "./CategoryTiles";
 import PanelCardSlider from "./PanelCardSlider";
-import PopularProductsList from "./PopularProductsList";
+import PopularProductsCard from "./PopularProductsCard";
+import useProducts from "../../hooks/useProducts";
 
 function HomePage() {
+  const { data: products } = useProducts();
+
   return (
     <Grid
       templateAreas={{
@@ -23,7 +26,22 @@ function HomePage() {
         <CategoryTiles />
       </GridItem>
       <GridItem area={"main"}>
-        <PopularProductsList />
+        <Text marginTop="10vh" marginBottom="5vh" fontSize="2xl">
+          Популярные товары
+        </Text>
+        <SimpleGrid
+          spacing={4}
+          gridTemplateRows="auto"
+          gridTemplateColumns="repeat(3, 1fr)"
+          gap={10}
+          rowGap={12}
+        >
+          {products?.slice(0, 12).map((p) => (
+            <Box key={p.id}>
+              <PopularProductsCard products={p} />
+            </Box>
+          ))}
+        </SimpleGrid>
       </GridItem>
     </Grid>
   );

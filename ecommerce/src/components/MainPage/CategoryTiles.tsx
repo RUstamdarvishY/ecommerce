@@ -16,6 +16,20 @@ const CategoryTiles = () => {
 
   const setCategoryId = useProductQueryStore((s) => s.setCategoryId);
 
+  const categoryTilesImages = [
+    { id: 1, title: "батарейки", src: "/categoryImages/pexels-battery.jpg" },
+    { id: 4, title: "зажигалки", src: "/categoryImages/pexels-lighter.jpg" },
+  ];
+
+  const getCategoryImage = (id: number) => {
+    for (let i = 0; i < categoryTilesImages.length; i++) {
+      if (id === categoryTilesImages[i].id) {
+        return categoryTilesImages[i].src;
+      }
+    }
+    return noImage;
+  };
+
   return (
     <SimpleGrid
       spacing={4}
@@ -23,30 +37,30 @@ const CategoryTiles = () => {
       gridTemplateColumns={"50% 50%"}
     >
       {categoryCards?.slice(0, 4).map((c) => (
-        <Link to={c.slug + '/'}>
-        <Card
-          key={c.id}
-          position="relative"
-          width="235px"
-          height="235px"
-          onClick={() => setCategoryId(c.id)}
-        >
-          <Image
-            src={noImage}
-            position="absolute"
-            left="10%"
-            top="5%"
-            width="80%"
-            height="70%"
-          ></Image>
-          <CardBody>
-            <Center>
-              <Text position="absolute" top="82%">
-                {c.title}
-              </Text>
-            </Center>
-          </CardBody>
-        </Card>
+        <Link to={c.slug + "/"}>
+          <Card
+            key={c.id}
+            position="relative"
+            width="235px"
+            height="235px"
+            onClick={() => setCategoryId(c.id)}
+          >
+            <Image
+              src={getCategoryImage(c.id)}
+              position="absolute"
+              left="10%"
+              top="5%"
+              width="80%"
+              height="70%"
+            ></Image>
+            <CardBody>
+              <Center>
+                <Text position="absolute" top="82%">
+                  {c.title}
+                </Text>
+              </Center>
+            </CardBody>
+          </Card>
         </Link>
       ))}
     </SimpleGrid>
