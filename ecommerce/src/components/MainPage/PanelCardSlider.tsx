@@ -26,7 +26,7 @@ const PanelCardSlider = () => {
   return (
     <Card zIndex="0" width="700px" height="485px" margin="10 auto">
       <CardBody>
-        <ImageSlider slides={slides} speed={4000} />
+        <ImageSlider slides={slides} speed={10000} />
       </CardBody>
     </Card>
   );

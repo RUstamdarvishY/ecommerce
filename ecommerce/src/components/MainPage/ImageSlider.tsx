@@ -5,9 +5,16 @@ import {
   ListItem,
   Text,
   UnorderedList,
+  keyframes,
 } from "@chakra-ui/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
+
+const fadeKeyFrames = keyframes`
+  from {opacity: 1}
+  50% {opacity: 0}
+  to {opacity: 1}
+`;
 
 interface Slides {
   id: number;
@@ -22,21 +29,39 @@ interface Props {
 }
 
 const ImageSlider = ({ slides, speed }: Props) => {
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
+  const delayTimer = 1000;
+
   const timerRef = useRef(0);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(0);
 
-  const goToPrevios = useCallback(() => {
+  const goToPrevios = useCallback(async () => {
+    setFade(1);
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+    await delay(delayTimer);
     setCurrentIndex(newIndex);
   }, [currentIndex, slides]);
 
-  const goToNext = useCallback(() => {
+  const goToNext = useCallback(async () => {
+    setFade(1);
     const isLastSlide = currentIndex === slides.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    await delay(delayTimer);
     setCurrentIndex(newIndex);
   }, [currentIndex, slides]);
+
+  const setCurrent = async (id: number) => {
+    if (id !== currentIndex) {
+      setFade(1);
+      await delay(delayTimer);
+    }
+    setCurrentIndex(id);
+  };
 
   useEffect(() => {
     if (timerRef.current) {
@@ -49,6 +74,13 @@ const ImageSlider = ({ slides, speed }: Props) => {
     return () => clearTimeout(timerRef.current);
   }, [goToNext, speed]);
 
+  const getAnimation = () => {
+    if (fade === 1) {
+      return `${fadeKeyFrames} alternate-reverse running ease-in-out 2s forwards`;
+    }
+    return undefined;
+  };
+
   return (
     <>
       <Box
@@ -60,6 +92,8 @@ const ImageSlider = ({ slides, speed }: Props) => {
         position="relative"
         borderRadius={5}
         zIndex="1"
+        onAnimationEnd={() => setFade(0)}
+        animation={getAnimation()}
       >
         <IconButton
           position="absolute"
@@ -98,7 +132,7 @@ const ImageSlider = ({ slides, speed }: Props) => {
               fontSize="24px"
               color="white"
               cursor="pointer"
-              onClick={() => setCurrentIndex(slide.id)}
+              onClick={() => setCurrent(slide.id)}
             ></ListItem>
           ))}
         </UnorderedList>
