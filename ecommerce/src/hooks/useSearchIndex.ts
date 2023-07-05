@@ -1,26 +1,30 @@
-import {useEffect, useState} from 'react'
-import MiniSearch, { Options } from 'minisearch'
-import { Products } from './useProducts'
+import { useEffect, useState } from "react";
+import MiniSearch, { Options, SearchOptions, SearchResult } from "minisearch";
+import { Products } from "./useProducts";
+
+function useSearchIndex(
+  data: Products[],
+  miniSearchOptions: Options,
+  searchOptions: SearchOptions = {}
+) {
+
+  const [results, setResults] = useState<SearchResult[] | undefined>();
+  const [searchIndex, setSearchIndex] = useState<MiniSearch | null>(null)
 
 
-function useSearchIndex(data: Products[], miniSearchOptions: Options, searchOptions = {}){
-    const [results, setResults] = useState([])
-    const [searchIndex, setSearchIndex] = useState([])
+  useEffect(() => {
+    const index = new MiniSearch<Products>(miniSearchOptions);
+    index.addAll(data);
 
-    useEffect(() => {
-        const index = new MiniSearch(miniSearchOptions) 
+    setSearchIndex(index);
+  }, [data, miniSearchOptions]);
+  
+  const search = (value: string) => {
+    const newResults = searchIndex?.search(value, searchOptions);
+    setResults(newResults) 
+  };
 
-        index.addAll(data)
-
-        setSearchIndex(index)
-    }, [])
-
-    const search = (value: string) => {
-        const newResults = searchIndex?.search(value, searchOptions)
-        setResults(newResults)
-    }
-
-    return {results, search, searchIndex}
+  return { results, search };
 }
 
-export default useSearchIndex
+export default useSearchIndex;
