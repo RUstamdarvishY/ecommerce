@@ -4,21 +4,21 @@ const axiosInstance = axios.create({
   baseURL: "https://online-shop-api-drf-9d5164fdf307.herokuapp.com/",
 });
 
-export interface ProductQuery{
+export interface ProductQuery {
   productId?: number;
   categoryId?: number;
   priceRange?: number[];
-  sortOrder?: string;
+  ordering?: string;
   searchText?: string;
 }
 
-class ApiClient<T>{
+class ApiClient<T> {
   endpoint: string;
-  params: ProductQuery | undefined
+  params: ProductQuery | undefined;
 
   constructor(endpoint: string, params?: ProductQuery) {
     this.endpoint = endpoint;
-    this.params = params
+    this.params = params;
   }
 
   getAll = (config: AxiosRequestConfig) => {

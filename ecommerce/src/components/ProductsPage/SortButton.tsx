@@ -12,13 +12,13 @@ import useProductQueryStore from "../../productStore";
 const PlatformSelector = () => {
   const sortOrders = [
     { value: "", label: "популярные" },
-    { value: "date", label: "новые" },
-    { value: "price", label: "дорогие" },
-    { value: "-price", label: "дешевые" },
+    { value: "date_added", label: "новые" },
+    { value: "-wholesale_price", label: "дорогие" },
+    { value: "wholesale_price", label: "дешевые" },
   ];
 
-  const sortOrder = useProductQueryStore((s) => s.ProductQuery.sortOrder);
-  const setSortOrder = useProductQueryStore((s) => s.setSortOrder);
+  const sortOrder = useProductQueryStore((s) => s.ProductQuery.ordering);
+  const setSortOrder = useProductQueryStore((s) => s.setOrdering);
 
   const currentSortOrder = sortOrders.find(
     (order) => order.value === sortOrder

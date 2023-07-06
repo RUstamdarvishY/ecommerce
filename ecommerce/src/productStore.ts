@@ -7,7 +7,7 @@ interface productQueryStore {
   setCategoryId: (categoryId: number) => void;
   setProductId: (productId: number) => void;
   setPriceRange: (priceRange: number[]) => void;
-  setSortOrder: (sortOrder: string) => void;
+  setOrdering: (sortOrder: string) => void;
 }
 
 const useProductQueryStore = create<productQueryStore>((set) => ({
@@ -19,8 +19,10 @@ const useProductQueryStore = create<productQueryStore>((set) => ({
     set((store) => ({ ProductQuery: { ...store.ProductQuery, productId } })),
   setPriceRange: (priceRange) =>
     set((store) => ({ ProductQuery: { ...store.ProductQuery, priceRange } })),
-  setSortOrder: (sortOrder) =>
-    set((store) => ({ ProductQuery: { ...store.ProductQuery, sortOrder } })),
+  setOrdering: (ordering) =>
+    set((store) => ({
+      ProductQuery: { ...store.ProductQuery, ordering },
+    })),
 }));
 
 export default useProductQueryStore;

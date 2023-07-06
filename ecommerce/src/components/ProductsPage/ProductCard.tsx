@@ -11,7 +11,7 @@ import { Products } from "../../hooks/useProducts";
 import noImage from "../../assets/placeholder-image.png";
 import { Link } from "react-router-dom";
 import useCreateCartItem from "../../hooks/useCreateCartItem";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import useProductQueryStore from "../../productStore";
 import useImage from "../../hooks/useImage";
 
@@ -24,14 +24,8 @@ const ProductCard = ({ products }: Props) => {
   const { id, title, retail_price, wholesale_price, inventory, description } =
     products;
 
-  const {mutate: createCartItem } = useCreateCartItem()
-
   const setProductId = useProductQueryStore((s) => s.setProductId)
-
-
-  // const handleOrderClick = useCallback((productId: number) => {
-  //   createCartItem(productId)
-  // }, [createCartItem]);
+  
 
   const image = useImage(id)
 
@@ -56,16 +50,12 @@ const ProductCard = ({ products }: Props) => {
           </CardBody>
           <CardBody>
             <Heading size="lg" textAlign="center">
-              {retail_price}
-            </Heading>
-            <Heading size="lg" textAlign="center">
               {wholesale_price}
             </Heading>
             <Button
               variant="solid"
               colorScheme="red"
               disabled={inventory === 0}
-              // onClick={() => {handleOrderClick(id)}}
             >
               Положить в корзину
             </Button>

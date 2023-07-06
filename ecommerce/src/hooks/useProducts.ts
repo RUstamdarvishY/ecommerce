@@ -26,7 +26,7 @@ const useProducts = () => {
         params: {
           category: productQuery.categoryId,
           price: productQuery.priceRange,
-          ordering: productQuery.sortOrder,
+          ordering: productQuery.ordering,
           search: productQuery.searchText,
         },
       }),
