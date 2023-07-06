@@ -9,11 +9,29 @@ import {
   Input,
   HStack,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useProductQueryStore from "../../productStore";
+import useProducts from "../../hooks/useProducts";
 
 const SliderInput = () => {
-  const [sliderValue, setSliderValue] = useState([0, 100]);
+  const categoryId = useProductQueryStore((s) => s.ProductQuery.categoryId);
+  const { data } = useProducts();
+
+  const [maxPrice, setMaxPrice] = useState(1000)
+  const [minPrice, setMinPrice] = useState(0)
+
+  useEffect(() => {
+    const products = data?.filter((p) => p.collection === categoryId);
+    const prices = products?.map((p) => p.wholesale_price);
+
+    if (prices) {
+      setMaxPrice(Math.max(...prices));
+      setMinPrice(Math.min(...prices));
+    }
+  }, [data, categoryId])
+  
+
+  const [sliderValue, setSliderValue] = useState([minPrice, maxPrice]);
 
   const setPriceRange = useProductQueryStore((s) => s.setPriceRange);
 
@@ -28,9 +46,14 @@ const SliderInput = () => {
       </HStack>
       <RangeSlider
         aria-label={["min", "max"]}
-        defaultValue={[0, 100]}
+        defaultValue={[minPrice, maxPrice]}
         onChange={(val) => setSliderValue(val)}
-        onChangeEnd={(val) => setPriceRange(val)}
+        onChangeEnd={(val) =>
+          setPriceRange({
+            wholesale_price__gt: val[0],
+            wholesale_price__lt: val[1],
+          })
+        }
       >
         <RangeSliderMark
           value={sliderValue[0]}

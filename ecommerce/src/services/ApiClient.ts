@@ -10,12 +10,18 @@ export interface ProductFilters {
   options: string[];
 }
 
+export interface PriceRange{
+  wholesale_price__gt: number;
+  wholesale_price__lt: number;
+}
+
 export interface ProductQuery {
   productId?: number;
   categoryId?: number;
-  priceRange?: number[];
+  priceRange?: PriceRange;
   ordering?: string;
   searchText?: string;
+  filters?: string[] 
 }
 
 class ApiClient<T> {

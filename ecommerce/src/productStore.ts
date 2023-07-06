@@ -1,13 +1,14 @@
 import { create } from "zustand";
-import { ProductQuery } from "./services/ApiClient";
+import { PriceRange, ProductQuery } from "./services/ApiClient";
 
 interface productQueryStore {
   ProductQuery: ProductQuery;
   setSearchText: (searchText: string) => void;
   setCategoryId: (categoryId: number) => void;
   setProductId: (productId: number) => void;
-  setPriceRange: (priceRange: number[]) => void;
+  setPriceRange: (priceRange: PriceRange) => void;
   setOrdering: (sortOrder: string) => void;
+  setFilters: (filters: string[]) => void;
 }
 
 const useProductQueryStore = create<productQueryStore>((set) => ({
@@ -22,6 +23,10 @@ const useProductQueryStore = create<productQueryStore>((set) => ({
   setOrdering: (ordering) =>
     set((store) => ({
       ProductQuery: { ...store.ProductQuery, ordering },
+    })),
+  setFilters: (filters) =>
+    set((store) => ({
+      ProductQuery: { ...store.ProductQuery, filters },
     })),
 }));
 
