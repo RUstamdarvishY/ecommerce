@@ -2,10 +2,9 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import ProductsHeader from "./ProductsHeader";
 import ProductList from "./ProductList";
 import SliderInput from "./SliderInput";
-import CheckBoxInput from "./CheckBoxInput";
-import filterOptions from "../entities/ProductFilters";
 import SortButton from "./SortButton";
 import { useEffect } from "react";
+import CheckBoxInput from "./CheckBoxInput";
 
 const Products = () => {
   useEffect(() => {
@@ -29,7 +28,7 @@ const Products = () => {
       </GridItem>
       <GridItem area={"filters"}>
         <SliderInput />
-        <CheckBoxInput productFilters={filterOptions} />
+        <CheckBoxInput />
       </GridItem>
       <GridItem area={"products"}>
         <SortButton />

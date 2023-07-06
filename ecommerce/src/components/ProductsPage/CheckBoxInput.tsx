@@ -1,39 +1,37 @@
-import { Checkbox, Box } from "@chakra-ui/react";
+import { Checkbox, Box, Text } from "@chakra-ui/react";
 import useProductQueryStore from "../../productStore";
+import filterOptions from "../entities/ProductFilters";
+import { useEffect, useState } from "react";
+import { ProductFilters } from "../../services/ApiClient";
 
-interface Options {
-  id: number;
-  title: string;
-  options: string[];
-}
-
-interface ProductFilters {
-  id: number;
-  category: string;
-  filters: Options[];
-}
-
-interface Props {
-  productFilters: ProductFilters[];
-}
-
-const CheckBoxInput = ({ productFilters }: Props) => {
+const CheckBoxInput = () => {
   const categoryId = useProductQueryStore((s) => s.ProductQuery.categoryId);
 
-  const categoryFilter = productFilters.find(
-    (p) => p.id === categoryId
-  )?.filters;
+  const [filters, setFilters] = useState<ProductFilters[]>();
+
+  useEffect(() => {
+    const categoryFilter = filterOptions.find(
+      (p) => p.id === categoryId
+    )?.filters;
+
+    setFilters(categoryFilter);
+  }, [categoryId]);
 
   return (
-    <>
-      {categoryFilter?.map((f) => {
-        <Box key={f.id}>
-          {f.options.map((o) => (
-            <Checkbox key={f.id}>{o}</Checkbox>
-          ))}
-        </Box>;
-      })}
-    </>
+    <Box>
+      {filters?.map((f) => (
+        <Box marginY={7} textAlign="left">
+          <Text key={f.id}>{f.title}</Text>
+          <Box>
+            {f.options.map((o, index) => (
+              <Checkbox key={index} display="block">
+                {o}
+              </Checkbox>
+            ))}
+          </Box>
+        </Box>
+      ))}
+    </Box>
   );
 };
 

@@ -4,6 +4,12 @@ const axiosInstance = axios.create({
   baseURL: "https://online-shop-api-drf-9d5164fdf307.herokuapp.com/",
 });
 
+export interface ProductFilters {
+  id: number;
+  title: string;
+  options: string[];
+}
+
 export interface ProductQuery {
   productId?: number;
   categoryId?: number;
