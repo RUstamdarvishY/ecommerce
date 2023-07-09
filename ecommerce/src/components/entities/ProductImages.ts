@@ -1,6 +1,6 @@
 const productImages = [
   {
-    id: 3,
+    id: 1,
     title: "camelion ag13",
     src: [
       "/productImages/CamelionAG13-1.png",

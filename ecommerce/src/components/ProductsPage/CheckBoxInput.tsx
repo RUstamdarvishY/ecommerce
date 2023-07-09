@@ -21,7 +21,6 @@ const CheckBoxInput = () => {
   }, [categoryId]);
 
   const handleChange = (o: string, e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.checked)
     if (e.target.checked) {
       productOptions.current.push(o);
     }

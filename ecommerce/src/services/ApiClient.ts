@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
+
 const axiosInstance = axios.create({
   baseURL: "https://online-shop-api-drf-9d5164fdf307.herokuapp.com/",
 });
@@ -8,6 +9,12 @@ export interface ProductFilters {
   id: number;
   title: string;
   options: string[];
+}
+
+export interface Tags {
+  id: number;
+  label: string;
+  tag: string;
 }
 
 export interface PriceRange{
@@ -21,7 +28,7 @@ export interface ProductQuery {
   priceRange?: PriceRange;
   ordering?: string;
   searchText?: string;
-  filters?: string[] 
+  tags?: Tags[] 
 }
 
 class ApiClient<T> {
