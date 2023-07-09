@@ -3,7 +3,6 @@ import { PriceRange, ProductQuery } from "./services/ApiClient";
 
 interface productQueryStore {
   ProductQuery: ProductQuery;
-  setSearchText: (searchText: string) => void;
   setCategoryId: (categoryId: number) => void;
   setProductId: (productId: number) => void;
   setPriceRange: (priceRange: PriceRange) => void;
@@ -13,7 +12,6 @@ interface productQueryStore {
 
 const useProductQueryStore = create<productQueryStore>((set) => ({
   ProductQuery: {},
-  setSearchText: (searchText) => set(() => ({ ProductQuery: { searchText } })),
   setCategoryId: (categoryId) =>
     set((store) => ({ ProductQuery: { ...store.ProductQuery, categoryId } })),
   setProductId: (productId) =>

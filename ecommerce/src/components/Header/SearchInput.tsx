@@ -1,9 +1,16 @@
-import { InputGroup, InputLeftAddon, Input, Box, VStack } from "@chakra-ui/react";
+import {
+  InputGroup,
+  InputLeftAddon,
+  Input,
+  Box,
+  VStack,
+  Menu,
+  MenuList,
+} from "@chakra-ui/react";
 import { AiOutlineSearch } from "react-icons/ai";
-import useProductQueryStore from "../../productStore";
 import useProducts from "../../hooks/useProducts";
 import useSearchIndex from "../../hooks/useSearchIndex";
-import SuggestionsDropdown from './SuggestionsDropdown';
+import SuggestionsDropdown from "./SuggestionsDropdown";
 
 const miniSearchOptions = {
   fields: ["title", "description"],
@@ -18,8 +25,6 @@ const miniSearchOptions = {
 const SearchInput = () => {
   const { data: products } = useProducts();
 
-  const setSearchText = useProductQueryStore((s) => s.setSearchText);
-
   const { results, search } = useSearchIndex(
     products || [],
     miniSearchOptions,
@@ -27,24 +32,22 @@ const SearchInput = () => {
   );
 
   return (
-    <VStack width='65%'>
+    <VStack width="65%">
       <InputGroup>
         <InputLeftAddon as={AiOutlineSearch} />
         <Input
           type="text"
-          onChange={(e) => {
-            search(e.target.value);
-            setSearchText(e.target.value);
-          }}
+          onChange={(e) => search(e.target.value)}
           placeholder="Найти товар"
           borderRadius={20}
           borderWidth="2px"
         />
       </InputGroup>
-      <Box width='inherit'>
-        {results && results.map((result) => 
-        <SuggestionsDropdown key={result.id} result={result} />
-        )}
+      <Box width="inherit" position='relative'>
+            {results &&
+              results.map((result) => (
+                <SuggestionsDropdown key={result.id} result={result} />
+              ))}
       </Box>
     </VStack>
   );

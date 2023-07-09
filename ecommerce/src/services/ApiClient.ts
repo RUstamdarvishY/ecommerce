@@ -27,7 +27,6 @@ export interface ProductQuery {
   categoryId?: number;
   priceRange?: PriceRange;
   ordering?: string;
-  searchText?: string;
   tags?: Tags[] 
 }
 
