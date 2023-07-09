@@ -29,6 +29,7 @@ const filterOptions = [
           "CR2025",
           "CR2016",
           "CR2032",
+          "Для слуховых аппаратов"
         ],
       },
     ],
@@ -67,7 +68,7 @@ const filterOptions = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     category: "Триммеры",
     filters: [
       {
@@ -78,7 +79,7 @@ const filterOptions = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     category: "Зарядки",
     filters: [
       {
@@ -100,14 +101,14 @@ const filterOptions = [
     ],
   },
   {
-    id: 7,
+    id: 8,
     category: "usb хабы",
     filters: [
       { id: 1, title: "Колличество разъемов", options: ["1", "2", "3", "4"] },
     ],
   },
   {
-    id: 8,
+    id: 9,
     category: "cd/dvd диски",
     filters: [
       { id: 1, title: "Тип диска", options: ["CD", "DVD"] },

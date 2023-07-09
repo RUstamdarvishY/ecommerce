@@ -18,6 +18,12 @@ const CategoryTiles = () => {
 
   const categoryTilesImages = [
     { id: 1, title: "батарейки", src: "/categoryImages/pexels-battery.jpg" },
+    {
+      id: 2,
+      title: "увеличительные стекла",
+      src: "/categoryImages/pexels-glass.jpg",
+    },
+    { id: 3, title: "фонарики", src: "/categoryImages/pexels-flashlight.jpg" },
     { id: 4, title: "зажигалки", src: "/categoryImages/pexels-lighter.jpg" },
   ];
 

@@ -70,9 +70,9 @@ const PopularProductsCard = ({ products }: Props) => {
                 <Text fontSize={"md"} position="absolute" top="7%" left="8%">
                   {retail_price}р
                 </Text>
-                <Text fontSize={"md"} position="absolute" top="15%" left="8%">
+                {/* <Text fontSize={"md"} position="absolute" top="15%" left="8%">
                   {wholesale_price}р
-                </Text>
+                </Text> */}
                 <Center>
                   <Text
                     fontSize={"md"}

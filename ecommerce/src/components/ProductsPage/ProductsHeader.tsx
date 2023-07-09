@@ -13,6 +13,7 @@ const ProductsHeader = () => {
 
   let label = "нет товаров";
 
+
   if (currentCategory && currentCategory.products_count === 1) {
     label = "товар";
   } else if (

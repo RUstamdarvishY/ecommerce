@@ -8,6 +8,14 @@ const productImages = [
       "/productImages/CamelionAG13-3.jpeg"
     ],
   },
+  {
+    id: 2,
+    title: "zigler",
+    src: [
+      "/productImages/zigler-1.jpeg",
+      "/productImages/zigler-2.jpeg",
+    ],
+  },
 ];
 
 export default productImages
